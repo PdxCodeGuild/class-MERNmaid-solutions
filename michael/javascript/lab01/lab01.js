@@ -6,7 +6,7 @@ Class MERNmaid
 */
 
 // Part 1
-console.log("Part 1");
+console.log("\nPart 1");
 
 // set name and age
 const name = 'Michael'; // immutable
@@ -82,4 +82,4 @@ class Point { // class
 
 const points = new Point(1, 5); // creates a new point with x = 1 and y = 5
 
-console.log(`Distance between (1, 5) and (2, 6): ${points.distanceBetween(2, 6)}`); // prints the distance between (1, 5) and (2, 6) as 1.4142135623730951 (the result) to console
+console.log(`Distance between (1, 5) and (2, 6): ${points.distanceBetween(2, 6)}\n`); // prints the distance between (1, 5) and (2, 6) as 1.4142135623730951 (the result) to console
