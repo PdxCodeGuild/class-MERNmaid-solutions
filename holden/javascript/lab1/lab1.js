@@ -32,3 +32,21 @@ for (i in animals){
 }
 console.log(animals.pop())
 console.log(animals)
+
+//part 4
+class Point{
+  constructor(x,y){
+    this.x = x
+    this.y = y
+  }
+  dist(second){
+    const xDist = this.x - second.x;
+    const yDist = this.y - second.y;
+    const squaredSum = (xDist * xDist) + (yDist * yDist);
+    return Math.sqrt(squaredSum);
+  }
+}
+
+const point1 = new Point(3,5);
+const point2 = new Point(6,9);
+console.log(point1.dist(point2))
