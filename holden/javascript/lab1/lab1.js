@@ -22,3 +22,13 @@ console.log(iseven(15));
 
 //part 3
 const animals = ['dog', 'cat', 'llama', 'bird'];
+for (animal of animals){
+  console.log(animal.toUpperCase())
+}
+for (i in animals){
+  if (animals[i] == 'cat'){
+    animals.splice(i, 1, 'opossum')
+  }
+}
+console.log(animals.pop())
+console.log(animals)
