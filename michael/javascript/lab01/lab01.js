@@ -49,12 +49,12 @@ console.log(`There are ${animals} in the array.`);
 
 // prints the array out in all upper case
 console.log("toUpperCase:");
-for (let animal of animals) { // for each animal in the array
+for (const animal of animals) { // for each animal in the array
     console.log(animal.toUpperCase());
 };
 
 // removes 'cat' from the array
-for (let animal in animals) {  // for each animal in the array
+for (const animal in animals) {  // for each animal in the array
     if (animals[animal] === "cat") { // if the current animal is cat, could have written as function.
         animals.splice(animal, 1); // remove cat from array
     };
