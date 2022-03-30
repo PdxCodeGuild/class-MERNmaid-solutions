@@ -51,3 +51,25 @@ console.log(animals)
 
 animals.pop()
 console.log(animals)
+
+// Part Four
+
+class Point {
+     constructor(x, y) {   //constructors create new objects and set values of the class
+        this.x = x
+        this.y = y
+    }
+    distanceBetween(point) {
+        const x = this.x - point.x;
+        const y = this.y - point.y;
+
+        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));  //Math.pow returns base to the exponent power
+
+    }
+    
+}
+const pointOne = new Point(5, 6)
+const pointTwo = new Point(7, 8)
+
+
+console.log(pointOne.distanceBetween(pointTwo))
