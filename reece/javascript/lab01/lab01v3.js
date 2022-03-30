@@ -4,7 +4,7 @@ const animals = ['dog', 'cat', 'llama', 'bird']; // Create immutable array of an
 
 for (let animal of animals) {
     let upperAnimal = animal.toUpperCase()
-    // console.log(upperAnimal)
+    console.log(upperAnimal)
 }; // Iterate over and capitalize
 
 animals.splice(1, 1); // Remove cat
