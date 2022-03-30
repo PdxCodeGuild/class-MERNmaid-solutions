@@ -67,7 +67,7 @@ console.log("Part 3:d (new array): " + animals)
 
 
 
-// Part 3 -------------------------------------------------------------
+// Part 4 -------------------------------------------------------------
 
 // Original Janky version 
 
@@ -105,31 +105,53 @@ console.log("Part 3:d (new array): " + animals)
 // console.log("\n", secondPoint.distanceBetween())
 
 
-// Alternate version 
+// Alternate version ------------------------------------------------------
 
+// class Point {
+//     constructor(x, y){
+//         this.x = x
+//         this.y = y  
+//     }
+
+//     getX() {
+//         return this.x
+//     }
+//     getY() {
+//         return this.y
+//     }
+
+//     distanceBetween(x2, y2){
+//         let minusX = this.x - x2
+//         let minusY = this.y - y2
+
+//         minusX *= minusX 
+//         minusY *= minusY
+
+//         return Math.sqrt(minusX + minusY)
+//     }
+// }
+
+// let fristPoint= new Point (10, 10)
+// let secondPoint = new Point(5, 5)
+
+
+// console.log("\n", secondPoint.distanceBetween(fristPoint.getX(), fristPoint.getY()))
+
+// Third streamlined version that does not need getter methods
 class Point {
     constructor(x, y){
         this.x = x
         this.y = y  
     }
 
-    getX() {
-        return this.x
-    }
-    getY() {
-        return this.y
-    }
-
-    distanceBetween(x2, y2){
-
-        let minusX = this.x - x2
-        let minusY = this.y - y2
+    distanceBetween(point){
+        let minusX = this.x - point.x
+        let minusY = this.y - point.y
 
         minusX *= minusX 
         minusY *= minusY
 
         return Math.sqrt(minusX + minusY)
-       
     }
 }
 
@@ -137,4 +159,4 @@ let fristPoint= new Point (10, 10)
 let secondPoint = new Point(5, 5)
 
 
-console.log("\n", secondPoint.distanceBetween(fristPoint.getX(), fristPoint.getY()))
+console.log("\n", fristPoint.distanceBetween(secondPoint))
