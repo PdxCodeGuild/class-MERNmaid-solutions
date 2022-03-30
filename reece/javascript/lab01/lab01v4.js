@@ -6,12 +6,11 @@ class Point {
         this.yValue = y;
     };
     distance() {
-        let answer = (this.xValue > this.yValue ? this.xValue - this.yValue : this.yValue - this.xValue );
-        // console.log(this.xValue)
+        let answer = (this.xValue > this.yValue ? this.xValue - this.yValue : this.yValue - this.xValue ); 
         return answer
-    };
+    }; // grabs distance between values and ensures it's positive
 
-};
+}; // Class created
 
 const pointDistance1 = new Point(1, 2);
-console.log(pointDistance1.distance());
+console.log(pointDistance1.distance()); // console logs distance value
