@@ -73,6 +73,7 @@ const lastValue = animals.pop(); // removes last value from array
 console.log(`Last value: ${lastValue} removed.`);
 console.log(animals);
 
+// changes 'llama' to 'alpaca' in the array
 const index2 = animals.indexOf("llama"); // get the index of llama
 animals[index2] = "alpaca"; // replace llama with alpaca
 console.log(`Replaced llama with alpaca.`);
