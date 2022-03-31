@@ -1,13 +1,13 @@
 const assert = require("assert"); // Import assert to use it in the tests
 const helloWorld = require("./hello-world.js"); // Import helloWorld to use it in the tests
 
-const string = "Llama"; // Declare a string variable
+const string = "llama"; // Declare a string variable
 const array = ["llama", "cat", "dog"]; // Declare an array variable
 
 // References: https://nodejs.org/api/assert.html
 
 // Test capitalizeWord
-assert.strictEqual(helloWorld.capitalizeWord(string), string);
+assert.strictEqual(helloWorld.capitalizeWord(string), "Llama");
 
 //Test speakWord
 assert.strictEqual(
