@@ -5,6 +5,7 @@ const string = "llama"; // Declare a string variable
 const array = ["llama", "cat", "dog"]; // Declare an array variable
 
 // References: https://nodejs.org/api/assert.html
+//             https://nodejs.org/api/assert.html#assertdeepstrictequalactual-expected-message
 
 // Test capitalizeWord
 assert.strictEqual(helloWorld.capitalizeWord(string), "Llama");
