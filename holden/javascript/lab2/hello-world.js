@@ -3,7 +3,7 @@ const speak = (name) => {
 };
 
 const capitalize = (word) => {
-  return word.replace(\b\w, (l) => {return l.toUpperCase});
+  return word.replace(/\b\w, (l) => {return l.toUpperCase});
 };
 
 module.exports = {
