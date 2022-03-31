@@ -87,9 +87,9 @@ const totalPrice = items.reduce((runningTotal, item) => {
 // console.log(totalPrice)
 
 
-// Reduce example with concatination
+// .reduce example with concatination
 const animals = ["cat", "dog", "mouse", "zebra"]
-const stringAnimals = animals.reduce((concatenated, animal) =>{
+const stringAnimals = animals.reduce((concatenated, animal) => {
   return concatenated + " " + animal
 })
 
