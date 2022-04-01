@@ -29,7 +29,7 @@ function getForecast() {
 			// let fTemp = Math.floor(
 			// 	((response.data.hourly[i].temp - 273.15) * 9) / 5 + 32
 			// ); // convert to fahrenheit; replaced by units param.
-			let timeConversion = new Date(
+			const timeConversion = new Date(
 				response.data.hourly[i].dt * 1000
 			).toLocaleString(); // convert to local hour time
 
