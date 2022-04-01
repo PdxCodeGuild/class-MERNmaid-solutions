@@ -1,3 +1,8 @@
+/*
+Date: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+Math: Google
+*/
+
 const SECRET_KEY = require("./.env"); // this is the secret key from the .env file
 const axios = require("axios"); // axios
 
