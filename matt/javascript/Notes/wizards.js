@@ -588,3 +588,4 @@ const wizardHouses = wizards.reduce((houses, wizard) => {
   }, {});
 
   console.log(wizardHouses)
+  
