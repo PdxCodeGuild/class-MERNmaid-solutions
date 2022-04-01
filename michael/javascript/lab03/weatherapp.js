@@ -4,7 +4,7 @@ Math: Google
 https://openweathermap.org/api/one-call-api: Reece
 */
 
-const SECRET_KEY = require("./.env"); // this is the secret key from the .env file
+const { SECRET_KEY } = require("./.env"); // this is the secret key from the .env file
 const axios = require("axios"); // axios
 
 const buildQueryURL = (params) => {
@@ -18,7 +18,7 @@ const buildQueryURL = (params) => {
 const queryParams = buildQueryURL({
 	lat: 45.51,
 	lon: -122.67,
-	appid: SECRET_KEY.SECRET_KEY,
+	appid: SECRET_KEY,
 	units: "imperial",
 }); // build the query string
 
