@@ -1,7 +1,7 @@
 /*
 Date: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
 Math: Google
-https://api.openweathermap.org/data/2.5/onecall: Reece
+https://openweathermap.org/api/one-call-api: Reece
 */
 
 const SECRET_KEY = require("./.env"); // this is the secret key from the .env file
