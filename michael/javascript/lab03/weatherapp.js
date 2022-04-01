@@ -31,7 +31,7 @@ function getForecast() {
 			// ); // convert to fahrenheit; replaced by units param.
 			let timeConversion = new Date(
 				response.data.hourly[i].dt * 1000
-			).toLocaleString(); // convert to 24 hour time
+			).toLocaleString(); // convert to local hour time
 
 			console.log(
 				`|+${i}h| ${timeConversion} Temp: ${response.data.hourly[i].temp}F Wind: ${response.data.hourly[i].wind_speed}mph ${response.data.hourly[i].weather[0].description}`
