@@ -53,7 +53,7 @@ for (animal of animals){
 const findCat = (e) => e === 'cat';
 let catIndex = animals.findIndex(findCat)
 
-animals.splice(catIndex, catIndex)
+animals.splice(catIndex, 1)
 
 //Add the item 'opossum' to the array
 animals.push("opossum")
