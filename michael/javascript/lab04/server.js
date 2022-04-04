@@ -32,7 +32,7 @@ const server = http.createServer((request, response) => {
 	}
 
 	// End our response
-	// response.end(); // Note needed
+	// response.end(); // Not needed
 });
 
 // Listen on port 3000
