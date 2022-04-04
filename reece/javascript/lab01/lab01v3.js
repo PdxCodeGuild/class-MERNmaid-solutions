@@ -7,6 +7,8 @@ for (let animal of animals) {
     console.log(upperAnimal)
 }; // Iterate over and capitalize
 
+// const index =animals.indexOf("cat"); // this makes it dynamic and better!!! use in future
+
 animals.splice(1, 1); // Remove cat
 
 animals.push('opossum'); // Add opossum
