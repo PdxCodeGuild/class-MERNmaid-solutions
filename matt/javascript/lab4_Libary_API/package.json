@@ -1,0 +1,13 @@
+{
+  "name": "lab4_Libary_API",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "<matthewosu@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
