@@ -14,7 +14,7 @@ const server = http.createServer((request, response) => {
   // Set the mime-type to plain/text, don't worry about mime types
   // this just tells the client what data is being sent
   const headers = {'Content-Type': 'text/plain'};
-  let titleQuery = request.url.toLowerCase().replace(/%20|\+/img, " ").replace("/", "")
+  let titleQuery = request.url.toLowerCase().replace(/%20|\+|_/img, " ").replace("/", "")
 
   const bookFound = titles.filter((book) => {
     return -1 != book.title.toLowerCase().search(titleQuery)
