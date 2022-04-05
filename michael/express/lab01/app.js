@@ -21,13 +21,13 @@ const randomMessage = () => {
 };
 
 // Define Routes
-// root route
+// Root route
 app.get("/", (req, res) => {
 	console.log("GET /");
 	res.send("Hello World!");
 });
 
-// about page route
+// About page route
 app.get("/about", (req, res) => {
 	console.log("GET /about");
 	res.send({ Message: "About page", Date: new Date() });
