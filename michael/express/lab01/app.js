@@ -1,4 +1,4 @@
-const express = require("express"); // import express
+const express = require("express"); // Import express
 const app = express(); // Create an instance of express
 
 // Defines port, optionally from environment variable
