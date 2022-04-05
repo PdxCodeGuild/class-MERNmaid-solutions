@@ -1,4 +1,4 @@
-// Reece Adams - ADV JS - 3/29/22 - lab 3: Hello Node - Version 3 //
+// Reece Adams - ADV JS - 3/29/22 - lab 2: Hello Node - Version 3 //
 
 const nameArray = ['MARTINO','JUstin','mikE']
 
