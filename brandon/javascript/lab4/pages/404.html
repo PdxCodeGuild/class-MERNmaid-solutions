@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #1b1b1b;
+      color: blanchedalmond;
+    }
+
+    h1 {
+      font-family: monospace;
+      font-size: 4rem;
+      animation: glow 1s linear infinite alternate;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 0 antiquewhite;
+      }
+      100% {
+        text-shadow: 0 0 5px antiquewhite;
+      }
+    }
+  </style>
+  <title>404</title>
+</head>
+<body>
+  <h1>If you'd like to make a call,<br>please hang up and try again.</h1>
+</body>
+</html>
