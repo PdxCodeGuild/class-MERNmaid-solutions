@@ -4,7 +4,7 @@ const {speak, capitalize} = require("./hello-world.js");
 const assert = require('assert');
 
 let name1 = "jeff"
-let name2 = capitalize(name2)
+let name2 = capitalize(name1)
 
 assert.strictEqual(name2, "Jeff");
 assert.strictEqual(name2, "JefF");
