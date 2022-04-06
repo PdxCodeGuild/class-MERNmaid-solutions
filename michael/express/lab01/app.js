@@ -1,5 +1,7 @@
 const express = require("express"); // Import express
+const dotenv = require("dotenv"); // For .env file
 const app = express(); // Create an instance of express
+dotenv.config(); // Read .env file
 
 // Defines port, optionally from environment variable
 const port = process.env.PORT || 3333;
