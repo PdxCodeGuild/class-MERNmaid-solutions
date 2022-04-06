@@ -12,12 +12,8 @@ const weather = async (url, apiKey) => {
   console.log(response.data.hourly[0].dt)
   for (hour of response.data.hourly) {
     console.log(hour.temp)
-  
-};
-
-
+  }
 }
-
 
 console.log(weather(url, apiKey))
 
@@ -25,14 +21,4 @@ console.log(weather(url, apiKey))
 
 
 
-// (async () => {
-//   const portland = await weather(url, apiKey);
-
-//   const hourly = portland.map((port) => {
-//     console.log(hourly)
-//     return port.temp;
-// });
-
-
-// })();
 
