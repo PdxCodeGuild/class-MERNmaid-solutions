@@ -55,11 +55,12 @@ app.get("/person/:id", async (req, res) => {
 	const person = await Person.findOne({ _id: req.params.id });
 	if (!person) {
 		res.sendStatus(404);
+		return;
 	} // If no person is found, send 404
-	if (person) {
-		await person.save();
-		res.send(person);
-	} // If person is found, send the person
+
+	await person.save();
+	res.send(person);
+	// If person is found, send the person
 }); // Retrieve a person
 
 // Update
@@ -67,13 +68,14 @@ app.patch("/person/:id", async (req, res) => {
 	const person = await Person.findOne({ _id: req.params.id });
 	if (!person) {
 		res.sendStatus(404);
+		return;
 	} // If no person is found, send 404
-	if (person) {
-		postData = req.body;
-		person.set(postData);
-		await person.save();
-		res.send(person);
-	} // If person is found, send the person
+
+	postData = req.body;
+	person.set(postData);
+	await person.save();
+	res.send(person);
+	// If person is found, send the person
 }); // Update a person
 
 // Delete
@@ -81,11 +83,12 @@ app.delete("/person/:id", async (req, res) => {
 	const person = await Person.findOne({ _id: req.params.id });
 	if (!person) {
 		res.sendStatus(404);
+		return;
 	} // If no person is found, send 404
-	if (person) {
-		await person.remove();
-		res.send(person);
-	} // If person is found, send the person
+
+	await person.remove();
+	res.send(person);
+	// If person is found, send the person
 }); // Delete a person
 
 // List
