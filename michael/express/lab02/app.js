@@ -1,41 +1,95 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const Fruit = require("./models/fruit");
-
-require("dotenv").config();
+const express = require("express"); // server
+const mongoose = require("mongoose"); // to connect to mongodb
+const cors = require("cors"); // cross-Origin Resource Sharing
+const bodyParser = require("body-parser"); // to parse the body of the request
+const Person = require("./models/person"); // Person model
+const morgan = require("morgan"); // logger
+const dotenv = require("dotenv"); // for .env file
+dotenv.config(); // read .env file
 
 const SECRET_DB_URL =
-	process.env.SECRET_DB_URL + ":" + process.env.SECRET_DB_PORT + "/lab02";
-const port = process.env.SECRET_PORT || 3333;
+	process.env.SECRET_DB_URL + ":" + process.env.SECRET_DB_PORT + "/lab02"; // Defines mongoDB URL from environment variables
+const port = process.env.SECRET_PORT || 3333; // Defines port, optionally from environment variable
 
-const app = express();
+const app = express(); // Create an instance of express
+app.use(cors()); // Enable CORS
+app.use(bodyParser.json()); // Support json encoded bodies
+app.use(morgan("dev")); // Log requests to console
 
+// Create an instance of the model
 mongoose
 	.connect(SECRET_DB_URL)
 	.then(() => {
 		console.log("Connected to MongoDB");
-	})
+	}) // Connect to mongoDB
 	.catch((err) => {
 		console.log("Error connecting to MongoDB: ", err);
-	});
+	}); // Catch error
 
 app.listen(port, () => {
-	console.log("Server is running on port " + port);
-});
+	console.log("Server is running on port ", port);
+}); // Start the server
 
-app.post("/add-fruit", async (req, res) => {
-	const fruit = new Fruit({ name: req.query.name, price: req.query.price });
-	await fruit.save();
-	res.send(fruit);
+const person = new Person({
+	firstName: "Test",
+	lastName: "Name",
+	age: 33,
+	username: "testname33",
 });
+person.save();
 
-app.get("/fruits", async (req, res) => {
-	const fruits = await Fruit.find();
-	res.send(fruits);
-});
+// Version 2
 
-app.get("/fruit", async (req, res) => {
-	const fruit = await Fruit.findById("624cd7376b79a7e755072746");
-	res.send(fruit);
-});
+// Create a simple CRUDL express app on the person model using the id to find the them
+
+// Create
+app.post("/person", async (req, res) => {
+	const person = new Person(req.body);
+	console.log(req.body);
+	await person.save();
+	res.send(person);
+}); // Create a new person
+
+// Retrieve
+app.get("/person/:id", async (req, res) => {
+	const person = await Person.findOne({ _id: req.params.id });
+	if (!person) {
+		res.sendStatus(404);
+	} // If no person is found, send 404
+	if (person) {
+		await person.save();
+		res.send(person);
+	} // If person is found, send the person
+}); // Retrieve a person
+
+// Update
+app.patch("/person/:id", async (req, res) => {
+	const person = await Person.findOne({ _id: req.params.id });
+	if (!person) {
+		res.sendStatus(404);
+	} // If no person is found, send 404
+	if (person) {
+		postData = req.body;
+		person.set(postData);
+		await person.save();
+		res.send(person);
+	} // If person is found, send the person
+}); // Update a person
+
+// Delete
+app.delete("/person/:id", async (req, res) => {
+	const person = await Person.findOne({ _id: req.params.id });
+	if (!person) {
+		res.sendStatus(404);
+	} // If no person is found, send 404
+	if (person) {
+		await person.remove();
+		res.send(person);
+	} // If person is found, send the person
+}); // Delete a person
+
+// List
+app.get("/person", async (req, res) => {
+	const people = await Person.find();
+	res.send(people);
+}); // List all people
