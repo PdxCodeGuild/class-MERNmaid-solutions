@@ -1,17 +1,24 @@
-const axios = require("axios");
+const axios = require("axios");  // import axios and dotenv
 const dotenv = require("dotenv");
 
 dotenv.config();
 
 
-const apiKey = process.env.SECRET_KEY;
+const apiKey = process.env.SECRET_KEY; //hide key in env file
 const url = "https://api.openweathermap.org/data/2.5/onecall?lat=45.52&lon=-122.67&exclude=daily,minutely&units=imperial&appid=";
 
+//async format logic 
 const weather = async (url, apiKey) => {
-  const response = await axios.get(url + apiKey);
-  console.log(response.data.hourly[0].dt)
+  const response = await axios.get(url + apiKey); // response from API in variable
+  let message = ''
+  let time = 0 // counter  to stop loop at 4
+
+  // console.log(response.data.hourly[0].dt) 
   for (hour of response.data.hourly) {
-    console.log(hour.temp)
+    time += 1 // increase counter
+    message += "Forcast " + "Temperature: " + hour.temp // need to finish concantinating data into message
+    if (time === 4) {break}  // stop counter at 4 displays
+    console.log(message)
   }
 }
 
