@@ -20,7 +20,7 @@ const listSchema = Schema(
 listSchema.virtual("items", {
     ref: "Item",
     localField: "_id",
-    foreignField: "character",
+    foreignField: "list",
     justOne: true
 })
 
