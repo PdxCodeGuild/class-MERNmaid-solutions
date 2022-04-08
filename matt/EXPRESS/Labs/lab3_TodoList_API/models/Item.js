@@ -14,5 +14,5 @@ const itemSchema = Schema({
     }
 });
 
-const Skill = mongoose.model("Item", itemSchema)
-module.exports = Skill;
+const Item = mongoose.model("Item", itemSchema)
+module.exports = Item;
