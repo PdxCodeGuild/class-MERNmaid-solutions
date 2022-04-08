@@ -5,7 +5,7 @@ const itemsRouter = Router();
 
 itemsRouter.get("/", async (req, res) => {
 	try {
-		const items = await Item.find();
+		const items = await Item.find().populate("list");
 		res.send(items);
 	} catch (err) {
 		console.log(err);
