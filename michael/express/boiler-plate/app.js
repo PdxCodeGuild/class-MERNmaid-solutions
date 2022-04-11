@@ -4,7 +4,10 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const authRouter = require("./routes/auth.routes");
+const postRouter = require("./routes/post.routes");
+
 const pEnv = process.env;
+
 dotenv.config();
 
 const app = express();
@@ -14,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/auth", authRouter);
+app.use("/secret", postRouter);
 
 const connectDB = async () => {
 	try {
