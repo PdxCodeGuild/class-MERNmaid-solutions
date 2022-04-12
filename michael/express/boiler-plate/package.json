@@ -1,4 +1,8 @@
 {
+	"name": "boiler-plate",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
 	"devDependencies": {
 		"dotenv": "^16.0.0",
 		"morgan": "^1.10.0",

@@ -1,9 +1,10 @@
 const { Router } = require("express");
 const List = require("../models/List");
+const jwtMiddleware = require("../helpers/jwt.middleware");
 
 const listsRouter = Router();
 
-listsRouter.get("/", async (req, res) => {
+listsRouter.get("/", [jwtMiddleware], async (req, res) => {
 	try {
 		const lists = await List.find();
 		console.log(lists);
@@ -13,7 +14,7 @@ listsRouter.get("/", async (req, res) => {
 	}
 });
 
-listsRouter.post("/", async (req, res) => {
+listsRouter.post("/", [jwtMiddleware], async (req, res) => {
 	try {
 		const list = await List(req.body);
 		await list.save();
@@ -23,7 +24,7 @@ listsRouter.post("/", async (req, res) => {
 	}
 });
 
-listsRouter.patch("/:id", async (req, res) => {
+listsRouter.patch("/:id", [jwtMiddleware], async (req, res) => {
 	try {
 		const list = await List.findByIdAndUpdate(req.params.id);
 		await list.set(req.body);
@@ -34,7 +35,7 @@ listsRouter.patch("/:id", async (req, res) => {
 	}
 });
 
-listsRouter.delete("/:id", async (req, res) => {
+listsRouter.delete("/:id", [jwtMiddleware], async (req, res) => {
 	try {
 		const list = await List.findByIdAndDelete(req.params.id);
 		if (!list) {
