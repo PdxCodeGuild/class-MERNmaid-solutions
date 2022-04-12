@@ -1,9 +1,10 @@
 const { Router } = require("express");
 const Item = require("../models/Item");
+const jwtMiddleware = require("../helpers/jwt.middleware");
 
 const itemsRouter = Router();
 
-itemsRouter.get("/", async (req, res) => {
+itemsRouter.get("/", [jwtMiddleware], async (req, res) => {
 	try {
 		const items = await Item.find().populate("list");
 		res.send(items);
@@ -12,7 +13,7 @@ itemsRouter.get("/", async (req, res) => {
 	}
 });
 
-itemsRouter.post("/", async (req, res) => {
+itemsRouter.post("/", [jwtMiddleware], async (req, res) => {
 	try {
 		const item = await Item(req.body);
 		await item.save();
@@ -22,7 +23,7 @@ itemsRouter.post("/", async (req, res) => {
 	}
 });
 
-itemsRouter.patch("/:id", async (req, res) => {
+itemsRouter.patch("/:id", [jwtMiddleware], async (req, res) => {
 	try {
 		const item = await Item.findByIdAndUpdate({ _id: req.params.id });
 		await item.set(req.body);
@@ -33,7 +34,7 @@ itemsRouter.patch("/:id", async (req, res) => {
 	}
 });
 
-itemsRouter.delete("/:id", async (req, res) => {
+itemsRouter.delete("/:id", [jwtMiddleware], async (req, res) => {
 	try {
 		const item = await Item.findOne({ _id: req.params.id });
 		if (!item) {
