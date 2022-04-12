@@ -51,8 +51,8 @@ app.post("/add-person", async (req, res) => {
 app.patch("/people/:id", async (req, res) => {
   try {
     const person = await Person.findById(req.params.id);
-    const personData = req.body;
-    person.set(personData);
+    // const personData = req.body;
+    person.set(req.body);
     await person.save();
     res.send(person);
   } catch(error) {
