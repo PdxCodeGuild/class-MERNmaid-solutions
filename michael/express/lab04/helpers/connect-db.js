@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();
 
-databaseName = process.env.DB_NAME;
+const databaseName = process.env.DB_NAME;
 
-const connectDatabase = async (databaseName) => {
+const connectDatabase = async () => {
 	try {
 		const connection = await mongoose.connect(
 			`mongodb://127.0.0.1:27017/${databaseName}`

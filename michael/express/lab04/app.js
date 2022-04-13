@@ -18,7 +18,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/auth", authRouter);
-app.use("/secret", postRouter);
+app.use("/post", postRouter);
+app.use("/board", boardRouter);
 
 const startServer = async (port = process.env.PORT, hostname = "127.0.0.1") => {
 	await connectDatabase("database-name"); // Change database name

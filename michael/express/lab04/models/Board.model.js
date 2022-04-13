@@ -3,9 +3,9 @@ const { Schema } = mongoose;
 
 const boardSchema = new Schema(
 	{
-		name: { type: String, required: true, unique: true },
+		title: { type: String, required: true, unique: true },
 		description: { type: String, required: true },
-		owner: { type: Schema.Types.ObjectId, ref: "User", required: true },
+		user: { type: Schema.Types.ObjectId, ref: "User", required: true },
 	},
 	{
 		timestamps: true,
@@ -13,13 +13,13 @@ const boardSchema = new Schema(
 	{ toJSON: { virtuals: true } }
 );
 
-boardSchema.virtual("posts", {
-	ref: "Post",
+boardSchema.virtual("users", {
+	ref: "User",
 	localField: "_id",
-	foreignField: "board",
+	foreignField: "user",
 	justOne: false,
 });
 
-const Board = mongoose.model("User", boardSchema);
+const Board = mongoose.model("Board", boardSchema);
 
 module.exports = Board;
