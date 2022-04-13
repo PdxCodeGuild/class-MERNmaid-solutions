@@ -16,9 +16,25 @@ const userSchema = Schema({
         default: false
     }
 }, {
+    toJSON: {
+        virtuals: true
+     },
     timestamps: true,
 });
 
+userSchema.virtual("posts", {
+    ref: "Post",
+    localField: "_id",
+    foreignField: "user",
+    justOne: false
+})
+
+userSchema.virtual("boards", {
+    ref: "Board",
+    localField: "_id",
+    foreignField: "user",
+    justOne: false
+})
 
 const User = mongoose.model("User", userSchema)
 

@@ -7,6 +7,7 @@ const dotenv = require("dotenv")
 const AuthRoutes = require("./routes/auth.routes")
 const PostRoutes = require("./routes/posts.routes")
 const BoardRoutes = require("./routes/board.routes")
+const ProfileRoutes = require("./routes/profile.routes")
 
 dotenv.config();
 
@@ -21,8 +22,9 @@ app.use(express.json()) // exact same as bodyParser
 
 // Routes
 app.use("/auth", AuthRoutes)
-app.use("/api", PostRoutes)
+app.use("/post", PostRoutes)
 app.use("/board", BoardRoutes)
+app.use("/profile", ProfileRoutes)
 
 
 const dbUrl = process.env.DB_URL

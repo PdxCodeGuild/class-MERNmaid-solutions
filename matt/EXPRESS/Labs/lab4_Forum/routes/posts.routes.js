@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 
 // Create
 router.post("/", jwtMiddleware, async (req, res) => {
-    const post = new Post(req.body)
+    const post = await new Post(req.body)
     await post.save();
     res.send(post)
 })

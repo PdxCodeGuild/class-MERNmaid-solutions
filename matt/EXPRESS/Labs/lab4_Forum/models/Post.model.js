@@ -13,14 +13,18 @@ const postSchema = Schema(
       type: String,
       required: true,
     },
-    id: {
+    author: {
       type: ObjectId,
-      ref: "user"
+      ref: "User"
+    },
+    boardAuthor: {
+      type: ObjectId,
+      ref: "Board"
     },
     date: {
       type: Date,
       default: Date.now,
-    },
+    }
   },
 );
 
