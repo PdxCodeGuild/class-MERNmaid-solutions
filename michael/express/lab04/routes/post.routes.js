@@ -24,18 +24,29 @@ router.post("/new", [jwtMiddleware, ...postValidator], async (req, res) => {
 	} // If errors, return 400
 
 	// const { userId } = req.userID;
-	const boardOwnerId = await Board.findById(boardId).user;
-	console.log(boardId);
-	console.log(boardOwnerId);
-	if (userId !== boardOwnerId) {
+	const boardOwnerId = await Board.findById({ _id: boardId });
+	const userIDobj = await User.findById({ _id: userId });
+	console.log(JSON.stringify(boardOwnerId));
+	console.log(JSON.stringify(userIDobj));
+
+	// console.log(userId);
+	if (
+		JSON.stringify(userIDobj.get("_id")) !==
+		JSON.stringify(boardOwnerId.get("user"))
+	) {
 		return res.status(403).json({
 			message: "You are not allowed to create a post for this user",
 		}); // If userId !== boardOwnerId, return 403
 	}
 
-	const newPost = { title, content, userId };
+	// const newPost = { title, content, userIDobj, boardOwnerId };
 	try {
-		post = await Post.create(newPost);
+		post = await Post.create({
+			title,
+			content,
+			user: userId,
+			board: boardId,
+		});
 		return res.status(201).json({ post });
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
