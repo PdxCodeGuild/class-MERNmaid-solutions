@@ -84,9 +84,9 @@ router.put("/:id", [jwtMiddleware], async (req, res) => {
 		});
 	}
 
-	const updatedPost = { title, content, userId };
+	const updatedBoard = { title, content, userId };
 
-	Board.findByIdAndUpdate(id, updatedPost, { new: true })
+	Board.findByIdAndUpdate(id, updatedBoard, { new: true })
 		.then((board) => {
 			res.json(board);
 		}) // If no errors, return board
