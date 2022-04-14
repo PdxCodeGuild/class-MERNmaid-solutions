@@ -1,12 +1,12 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const authRouter = require("./routes/auth.routes");
 const postRouter = require("./routes/post.routes");
 const boardRouter = require("./routes/board.routes");
-const adminRouter = require("./routes/admin.routes");
+// const adminRouter = require("./routes/admin.routes");
 const connectDatabase = require("./helpers/connect-db");
 
 dotenv.config();

@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const router = Router();
 const Board = require("../models/Board.model");
 // const Post = require("../models/Post.model");
-const User = require("../models/User.model");
+// const User = require("../models/User.model");
 const { check, validationResult } = require("express-validator");
 const { reset } = require("nodemon");
 
