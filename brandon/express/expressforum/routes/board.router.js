@@ -2,6 +2,8 @@ const { Router } = require("express");
 const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
+const jwtMiddleware = require("../helpers/jwtMiddleware");
 const Board = require("../models/Board.model");
 
 const boardRouter = Router();
@@ -36,7 +38,7 @@ boardRouter.post("/", async (req, res) => {
   }
 });
 
-boardRouter.patch("/:id", async (req, res) => {
+boardRouter.patch("/:id", jwtMiddleware, async (req, res) => {
   try {
     const board = await Board.findById(req.params.id);
     board.set(req.body);
@@ -48,7 +50,7 @@ boardRouter.patch("/:id", async (req, res) => {
   }
 });
 
-boardRouter.delete("/:id", async (req, res) => {
+boardRouter.delete("/:id", jwtMiddleware, async (req, res) => {
   try {
     const board = await Board.findById(req.params.id);
     await board.remove();
