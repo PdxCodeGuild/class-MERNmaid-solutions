@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const jwtMiddleware = require("../helpers/jwt.middleware");
+const jwt = require("jsonwebtoken");
 const router = Router();
 const Board = require("../models/Board.model");
 const Post = require("../models/Post.model");
@@ -13,7 +14,7 @@ const postValidator = [
 	check("description", "Description is required").not().isEmpty(),
 ]; // end postValidator
 
-// Create a new post
+// Create a new board
 router.post("/new", [jwtMiddleware, ...postValidator], async (req, res) => {
 	const errors = validationResult(req); // Check for errors
 
@@ -40,79 +41,106 @@ router.post("/new", [jwtMiddleware, ...postValidator], async (req, res) => {
 		console.error(err.message);
 		res.status(500).send("Server Error");
 	}
-}); // End of new post
+}); // End of new board
 
-// Read a post
+// Read a board
 router.get("/:id", [jwtMiddleware], (req, res) => {
 	const { id } = req.params;
+	Board.findById(id)
+		.populate("user")
+		.then((board) => {
+			if (!board) {
+				return res.status(404).send({ msg: "Board not found" });
+			} // If boardId does not exist, return 404
+			res.status(200).send(board);
+		});
+}); // End of read board
 
-	Post.findById(id)
-		.populate("userId")
-		.then((post) => {
-			res.json(post);
-		}) // If no errors, return post
-		.catch((err) => {
-			res.json(err);
-		}); // If errors, return error
-}); // End of read post
-
-// Update a post
-router.put("/:id", [jwtMiddleware], (req, res) => {
+// Update a board
+router.put("/:id", [jwtMiddleware], async (req, res) => {
 	const { id } = req.params;
-	const { userId } = req.user;
+	// const { userId } = req.user;
 	const { boardId, title, content } = req.body;
 
-	const boardOwnerId = Board.findById(boardId).owner;
+	// Get the authorization token
+	const token = req.headers.authorization.split(" ")[1];
+	// Verify the token
+	// console.log(token);
+	const decoded = jwt.verify(token, process.env.JWT_SECRET);
+	// console.log(decoded);
+	// Get the userId from the token
+	const userId = decoded._id;
 
-	if (userId !== boardOwnerId) {
+	console.log(userId);
+	// Only the owner of the board can delete it
+	const board = await Board.findById({ _id: id });
+	if (board === null) {
+		return res.status(404).json({ message: "board not found" });
+	}
+
+	if (JSON.stringify(board.get(userId)) !== JSON.stringify(req.userId)) {
 		return res.status(403).json({
-			message: "You are not allowed to update a post for this user",
-		}); // If userId !== boardOwnerId, return 403
+			message: "You are not allowed to update this board",
+		});
 	}
 
 	const updatedPost = { title, content, userId };
 
-	Post.findByIdAndUpdate(id, updatedPost, { new: true })
-		.then((post) => {
-			res.json(post);
-		}) // If no errors, return post
+	Board.findByIdAndUpdate(id, updatedPost, { new: true })
+		.then((board) => {
+			res.json(board);
+		}) // If no errors, return board
 		.catch((err) => {
 			res.json(err);
 		}); // If errors, return error
-}); // End of update post
+}); // End of update board
 
-// Delete a post
-router.delete("/:id", [jwtMiddleware], (req, res) => {
+// Delete a board
+router.delete("/delete/:id", [jwtMiddleware], async (req, res) => {
 	const { id } = req.params;
-	const { userId } = req.user;
+	// const { userId } = req.user;
 
-	const boardOwnerId = Board.findById(boardId).owner;
+	// Get the authorization token
+	const token = req.headers.authorization.split(" ")[1];
+	// Verify the token
+	// console.log(token);
+	const decoded = jwt.verify(token, process.env.JWT_SECRET);
+	// console.log(decoded);
+	// Get the userId from the token
+	const userId = decoded._id;
 
-	if (userId !== boardOwnerId) {
-		return res.status(403).json({
-			message: "You are not allowed to delete a post for this user",
-		}); // If userId !== boardOwnerId, return 403
+	console.log(userId);
+	// Only the owner of the board can delete it
+	const board = await Board.findById({ _id: id });
+	if (board === null) {
+		return res.status(404).json({ message: "Board not found" });
 	}
 
-	Post.findByIdAndDelete(id)
-		.then((post) => {
-			res.json(post);
-		}) // If no errors, return post
+	if (JSON.stringify(board.get(userId)) !== JSON.stringify(req.userId)) {
+		return res.status(403).json({
+			message: "You are not allowed to delete this Board",
+		});
+	}
+
+	Board.findByIdAndDelete(id)
+		.then((board) => {
+			res.json(board);
+		}) // If no errors, return board
 		.catch((err) => {
 			res.json(err);
 		}); // If errors, return error
-}); // End of delete post
+}); // End of delete board
 
-// List all posts
+// List all boards
 router.get("/", [jwtMiddleware], (req, res) => {
-	Post.find()
-		.populate("userId")
+	Board.find()
+		.populate("user")
 		.then((posts) => {
 			res.json(posts);
 		}) // If no errors, return posts
 		.catch((err) => {
 			res.json(err);
 		}); // If errors, return error
-}); // End of list all posts
+}); // End of list all boards
 
 module.exports = router;

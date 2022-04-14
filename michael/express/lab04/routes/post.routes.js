@@ -1,7 +1,8 @@
 const { Router } = require("express");
 const jwtMiddleware = require("../helpers/jwt.middleware");
+const jwt = require("jsonwebtoken");
 const router = Router();
-const Board = require("../models/Board.model");
+// const Board = require("../models/Board.model");
 const Post = require("../models/Post.model");
 const User = require("../models/User.model");
 const { check, validationResult } = require("express-validator");
@@ -17,17 +18,33 @@ const postValidator = [
 // Create a new post
 router.post("/new", [jwtMiddleware, ...postValidator], async (req, res) => {
 	const errors = validationResult(req); // Check for errors
-	const { title, content, boardId, userId } = req.body;
+	const { title, content, boardId } = req.body;
 
 	if (!errors.isEmpty()) {
 		return res.status(400).send({ errors: errors.array() });
 	} // If errors, return 400
 
+	// Get the authorization token
+	const token = req.headers.authorization.split(" ")[1];
+	// Verify the token
+	// console.log(token);
+	const decoded = jwt.verify(token, process.env.JWT_SECRET);
+	// console.log(decoded);
+	// Get the userId from the token
+	const userId = decoded._id;
+
+	console.log(userId);
+	// Only the owner of the post can delete it
+	const board = await Board.findById({ _id: boardId });
+	if (board === null) {
+		return res.status(404).json({ message: "Board not found" });
+	}
+
 	// const { userId } = req.userID;
 	const boardOwnerId = await Board.findById({ _id: boardId });
 	const userIDobj = await User.findById({ _id: userId });
-	console.log(JSON.stringify(boardOwnerId));
-	console.log(JSON.stringify(userIDobj));
+	// console.log(JSON.stringify(boardOwnerId));
+	// console.log(JSON.stringify(userIDobj));
 
 	// console.log(userId);
 	if (
@@ -54,76 +71,97 @@ router.post("/new", [jwtMiddleware, ...postValidator], async (req, res) => {
 }); // End of new post
 
 // Read a post
-router.get("/:id", [jwtMiddleware], (req, res) => {
+router.get("/:id", async (req, res) => {
 	const { id } = req.params;
 
-	Post.findById(id)
-		.populate("userId")
-		.then((post) => {
-			res.json(post);
-		}) // If no errors, return post
-		.catch((err) => {
-			res.json(err);
-		}); // If errors, return error
+	try {
+		post = await Post.findById({ _id: id });
+		return res.status(200).json({ post });
+	} catch (err) {
+		return res.status(500).json({ message: err.message });
+	}
 }); // End of read post
 
 // Update a post
-router.put("/:id", [jwtMiddleware], (req, res) => {
+router.put("/:id", [jwtMiddleware, ...postValidator], async (req, res) => {
 	const { id } = req.params;
-	const { userId } = req.user;
-	const { boardId, title, content } = req.body;
+	const { title, content } = req.body;
+	const errors = validationResult(req); // Check for errors
+	if (!errors.isEmpty()) {
+		return res.status(400).send({ errors: errors.array() });
+	} // If errors, return 400
 
-	const boardOwnerId = Board.findById(boardId).owner;
+	// Get the authorization token
+	const token = req.headers.authorization.split(" ")[1];
+	// Verify the token
+	// console.log(token);
+	const decoded = jwt.verify(token, process.env.JWT_SECRET);
+	// console.log(decoded);
+	// Get the userId from the token
+	const userId = decoded._id;
 
-	if (userId !== boardOwnerId) {
-		return res.status(403).json({
-			message: "You are not allowed to update a post for this user",
-		}); // If userId !== boardOwnerId, return 403
+	console.log(userId);
+	// Only the owner of the post can delete it
+	const post = await Post.findById({ _id: id });
+	if (post === null) {
+		return res.status(404).json({ message: "Post not found" });
 	}
 
-	const updatedPost = { title, content, userId };
+	if (JSON.stringify(post.get(userId)) !== JSON.stringify(req.userId)) {
+		return res.status(403).json({
+			message: "You are not allowed to delete this post",
+		});
+	}
 
-	Post.findByIdAndUpdate(id, updatedPost, { new: true })
-		.then((post) => {
-			res.json(post);
-		}) // If no errors, return post
-		.catch((err) => {
-			res.json(err);
-		}); // If errors, return error
+	try {
+		post = await Post.findByIdAndUpdate({ _id: id }, { title, content });
+		return res.status(200).json({ post });
+	} catch (err) {
+		return res.status(500).json({ message: err.message });
+	}
 }); // End of update post
 
 // Delete a post
-router.delete("/:id", [jwtMiddleware], (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
 	const { id } = req.params;
-	const { userId } = req.user;
+	// Get the authorization token
+	const token = req.headers.authorization.split(" ")[1];
+	// Verify the token
+	// console.log(token);
+	const decoded = jwt.verify(token, process.env.JWT_SECRET);
+	// console.log(decoded);
+	// Get the userId from the token
+	const userId = decoded._id;
 
-	const boardOwnerId = Board.findById(boardId).owner;
-
-	if (userId !== boardOwnerId) {
-		return res.status(403).json({
-			message: "You are not allowed to delete a post for this user",
-		}); // If userId !== boardOwnerId, return 403
+	console.log(userId);
+	// Only the owner of the post can delete it
+	const post = await Post.findById({ _id: id });
+	if (post === null) {
+		return res.status(404).json({ message: "Post not found" });
 	}
 
-	Post.findByIdAndDelete(id)
-		.then((post) => {
-			res.json(post);
-		}) // If no errors, return post
-		.catch((err) => {
-			res.json(err);
-		}); // If errors, return error
+	if (JSON.stringify(post.get(userId)) !== JSON.stringify(req.userId)) {
+		return res.status(403).json({
+			message: "You are not allowed to delete this post",
+		});
+	}
+
+	try {
+		post = await Post.findByIdAndDelete({ _id: id });
+		return res.status(200).json({ post });
+	} catch (err) {
+		return res.status(500).json({ message: err.message });
+	}
 }); // End of delete post
 
 // List all posts
-router.get("/", [jwtMiddleware], (req, res) => {
-	Post.find()
-		.populate("userId")
-		.then((posts) => {
-			res.json(posts);
-		}) // If no errors, return posts
-		.catch((err) => {
-			res.json(err);
-		}); // If errors, return error
+router.get("/", async (req, res) => {
+	try {
+		posts = await Post.find();
+		return res.status(200).json({ posts });
+	} catch (err) {
+		return res.status(500).json({ message: err.message });
+	}
 }); // End of list all posts
 
 module.exports = router;
