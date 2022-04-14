@@ -96,7 +96,7 @@ router.put("/:id", [jwtMiddleware], async (req, res) => {
 }); // End of update board
 
 // Delete a board
-router.delete("/delete/:id", [jwtMiddleware], async (req, res) => {
+router.delete("/:id", [jwtMiddleware], async (req, res) => {
 	const { id } = req.params;
 	// const { userId } = req.user;
 

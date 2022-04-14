@@ -122,7 +122,7 @@ router.put("/:id", [jwtMiddleware, ...postValidator], async (req, res) => {
 }); // End of update post
 
 // Delete a post
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
 	const { id } = req.params;
 	// Get the authorization token
 	const token = req.headers.authorization.split(" ")[1];
