@@ -23,6 +23,7 @@ const userSchema = Schema(
 }
 );
 
+//make virtual for posts and board
 const User = mongoose.model("User", userSchema);
 module.exports = User;
 

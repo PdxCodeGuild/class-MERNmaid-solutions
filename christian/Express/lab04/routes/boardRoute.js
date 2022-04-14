@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const jwtMiddleware = require("../helpers/jwtMiddleware");
 const Board = require("../Models/Board");
 
 const router = Router();
@@ -35,11 +36,11 @@ router.patch('/update/:id', async (req, res) => {
 });
 
 //Delete board
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/delete/:id', jwtMiddleware, async (req, res) => {
     const board = await Board.findOne({ _id: req.params.id });
     if (!board) {
         res.send(404);
-    }
+    } // else/if statement to verify user
     await board.remove(); 
     res.send(board)
 })
@@ -49,6 +50,9 @@ router.get("/list", async (req, res) => {
     const posts = await Posts.find().populate("posts");
     res.send(posts);
   });
+
+  
+  
 
   module.exports = router;
   

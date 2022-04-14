@@ -1,5 +1,7 @@
 const { Router } = require("express");
+const jwtMiddleware = require("../helpers/jwtMiddleware");
 const Post = require("../Models/Post");
+const User = require("../Models/User");
 const router = Router();
 
 //Create post
@@ -34,12 +36,15 @@ router.patch('/update/:id', async (req, res) => {
 });
 
 //Delete post
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/delete/:id',jwtMiddleware, async (req, res) => {
     const post = await Post.findOne({ _id: req.params.id });
-    if (!post) {
+    const user = await User.findById({ _id: req.params.id})
+    if (req.user._id = post._id) {
+        await post.remove(); 
+        
+    }else if (!post) {
         res.send(404);
     }
-    await post.remove(); 
     res.send(post)
 })
 
