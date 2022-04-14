@@ -30,7 +30,6 @@ router.get("/:id", async (req, res) => {
 });
 
 
-// note to self this is broken rn
 router.patch("/:id", jwtMiddleware, async (req, res) => {
   const post = await Post.findOne({ _id: req.params.id });
   if (!post) {
