@@ -33,10 +33,10 @@ router.get("/:boardName", async (req, res) => {
 router.patch("/:name", jwtMiddleware, async (req, res) => {
   const board = await Board.findOne({ boardName: req.params.name });
   if (!board) {
-    res.status(404);
+    return res.sendStatus(404);
   }
   if (board.user != req.user && !req.user.isAdmin) {
-    res.status(403).send("unauthorized");
+    return res.status(403).send("unauthorized");
   }
 
   const boardData = req.body;
@@ -52,10 +52,10 @@ router.delete("/:name", jwtMiddleware, async (req, res) => {
   const board = await Board.findOne({ boardName: req.params.name });
 
   if (!board) {
-    res.status(404);
+    return res.sendStatus(404);
   }
   if (board.user != req.user && !req.user.isAdmin) {
-    res.status(403).send("unauthorized");
+    return res.status(403).send("unauthorized");
   }
 
   await board.remove();
