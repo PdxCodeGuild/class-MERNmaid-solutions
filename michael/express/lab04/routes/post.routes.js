@@ -2,7 +2,7 @@ const { Router } = require("express");
 const jwtMiddleware = require("../helpers/jwt.middleware");
 const jwt = require("jsonwebtoken");
 const router = Router();
-// const Board = require("../models/Board.model");
+const Board = require("../models/Board.model");
 const Post = require("../models/Post.model");
 const User = require("../models/User.model");
 const { check, validationResult } = require("express-validator");
@@ -71,7 +71,7 @@ router.post("/new", [jwtMiddleware, ...postValidator], async (req, res) => {
 }); // End of new post
 
 // Read a post
-router.get("/:id", async (req, res) => {
+router.get("/:id", [jwtMiddleware], async (req, res) => {
 	const { id } = req.params;
 
 	try {
@@ -122,7 +122,7 @@ router.put("/:id", [jwtMiddleware, ...postValidator], async (req, res) => {
 }); // End of update post
 
 // Delete a post
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", [jwtMiddleware], async (req, res) => {
 	const { id } = req.params;
 	// Get the authorization token
 	const token = req.headers.authorization.split(" ")[1];

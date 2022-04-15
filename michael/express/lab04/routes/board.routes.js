@@ -132,7 +132,7 @@ router.delete("/:id", [jwtMiddleware], async (req, res) => {
 }); // End of delete board
 
 // List all boards
-router.get("/", [jwtMiddleware], (req, res) => {
+router.get("/", (req, res) => {
 	Board.find()
 		.populate("user")
 		.then((posts) => {

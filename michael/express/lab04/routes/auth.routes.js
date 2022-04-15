@@ -4,6 +4,7 @@ const { check, validationResult } = require("express-validator");
 const authRouter = Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Post = require("../models/Post.model");
 
 const signupValidator = [
 	check("username", "Username is required")
@@ -81,6 +82,43 @@ authRouter.post("/login", [...loginValidator], async (req, res) => {
 		expiresIn: "1h",
 	});
 	res.status(201).send({ token });
+});
+
+// Profile
+// authRouter.get("/profile", async (req, res) => {
+// 	// Get the authorization token
+// 	const token = req.headers.authorization.split(" ")[1];
+// 	// Verify the token
+// 	// console.log(token);
+// 	const decoded = jwt.verify(token, process.env.JWT_SECRET);
+// 	// console.log(decoded);
+// 	// Get the userId from the token
+// 	const userId = decoded._id;
+
+// 	// populate the user's profile and their posts
+// 	const user = await User.findById(userId);
+// 	console.log(user.populate("post"));
+// 	res.status(200).send(sanitizeUser(user));
+// });
+
+// A profile route for User that shows not only information about the currently logged in user but also every post they've made.
+authRouter.get("/profile/", async (req, res) => {
+	// Get the authorization token
+	const token = req.headers.authorization.split(" ")[1];
+	// Verify the token
+	// console.log(token);
+	const decoded = jwt.verify(token, process.env.JWT_SECRET);
+	// console.log(decoded);
+	// Get the userId from the token
+	const userId = decoded._id;
+
+	// populate the user's profile and their posts
+	const user = await User.findById(userId);
+
+	const userPosts = await Post.find({ user: userId });
+
+	console.log(userPosts);
+	res.status(200).send({ user, userPosts });
 });
 
 module.exports = authRouter;

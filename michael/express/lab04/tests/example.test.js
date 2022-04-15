@@ -20,7 +20,6 @@ setTimeout(() => {
 });
 
 describe("Test the status codes of the routes", () => {
-	// dictionary containing all the routes and their status codes
 	const routes = {
 		"/auth/": {
 			status: 404,
@@ -38,12 +37,10 @@ describe("Test the status codes of the routes", () => {
 	function status200(route, statusCode) {
 		it(`${route} Should return a ${statusCode} status code`, async () => {
 			let res = await chai.request(app).get(route);
-			// console.log(res.status, res);
 			chai.expect(res.status).to.be.eq(statusCode);
 		}).timeout(10000);
 	}
 
-	// test status200 on all routes
 	for (let route in routes) {
 		status200(route, routes[route].status);
 	}
