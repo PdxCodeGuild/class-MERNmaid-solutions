@@ -13,7 +13,7 @@ dotenv.config();
 
 const app = express();
 
-app.use(morgan("tiny"));
+if (process.env.ENV !== "test") app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
 
@@ -22,11 +22,17 @@ app.use("/post", postRouter);
 app.use("/board", boardRouter);
 
 const startServer = async (port = process.env.PORT, hostname = "127.0.0.1") => {
-	await connectDatabase("database-name"); // Change database name
+	await connectDatabase(process.env.DB_NAME); // Change database name
 
 	app.listen(port, hostname, () => {
 		console.log(`🚀 Listening at ${hostname}:${port}...\n`);
 	});
 };
+if (process.env.ENV !== "test") {
+	startServer();
+}
 
-startServer();
+module.exports = {
+	app,
+	startServer,
+};

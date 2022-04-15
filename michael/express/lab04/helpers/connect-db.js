@@ -9,7 +9,8 @@ const connectDatabase = async () => {
 		const connection = await mongoose.connect(
 			`mongodb://127.0.0.1:27017/${databaseName}`
 		);
-		console.log(`\n🚀 Connected to database "${databaseName}"...`);
+		if (process.env.ENV !== "test")
+			console.log(`\n🚀 Connected to database "${databaseName}"...`);
 		return connection;
 	} catch (err) {
 		console.error(err);

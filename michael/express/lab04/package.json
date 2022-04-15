@@ -4,7 +4,10 @@
 	"main": "index.js",
 	"license": "MIT",
 	"devDependencies": {
+		"chai": "^4.3.6",
+		"chai-http": "^4.3.0",
 		"dotenv": "^16.0.0",
+		"mocha": "^9.2.2",
 		"morgan": "^1.10.0",
 		"nodemon": "^2.0.15"
 	},
@@ -19,6 +22,7 @@
 		"package.json": "^2.0.1"
 	},
 	"scripts": {
-		"start": "nodemon app.js"
+		"start": "nodemon app.js",
+		"test": "mocha"
 	}
 }

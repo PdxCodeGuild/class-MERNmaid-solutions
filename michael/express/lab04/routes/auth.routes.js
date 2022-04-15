@@ -80,7 +80,7 @@ authRouter.post("/login", [...loginValidator], async (req, res) => {
 	const token = jwt.sign(sanitizeUser(user), process.env.JWT_SECRET, {
 		expiresIn: "1h",
 	});
-	res.status(200).send({ token });
+	res.status(201).send({ token });
 });
 
 module.exports = authRouter;
