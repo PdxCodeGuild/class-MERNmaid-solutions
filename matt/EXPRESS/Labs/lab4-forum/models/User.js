@@ -22,8 +22,28 @@ const userSchema = Schema(
   },
   {
     timestamps: true,
+    toJSON: {
+      virtuals: true,
+    },
   }
+  
 );
+
+
+userSchema.virtual("board", {
+  ref: "Board",
+  localField: "_id",
+  foreignField: "author",
+  justOne: false, //create a list of posts related to a board
+});
+
+userSchema.virtual("posts", {
+  ref: "Post",
+  localField: "_id",
+  foreignField: "author", // use the users id to look up for any posts where the author matches the user id
+  justOne: false, //create a list of posts related to a board
+});
+
 
 const User = mongoose.model("User", userSchema);
 
