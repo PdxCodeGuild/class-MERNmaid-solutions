@@ -38,9 +38,8 @@ listsRouter.patch("/:id", [jwtMiddleware], async (req, res) => {
 listsRouter.delete("/:id", [jwtMiddleware], async (req, res) => {
 	try {
 		const list = await List.findByIdAndDelete(req.params.id);
-		if (!list) {
-			return res.sendStatus(404);
-		}
+		if (!list) return res.sendStatus(404);
+
 		await list.remove();
 		res.send(list);
 	} catch (err) {

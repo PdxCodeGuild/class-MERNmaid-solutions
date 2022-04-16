@@ -45,6 +45,7 @@ describe("Test the status codes of the routes", () => {
 		status200(route, routes[route].status);
 	}
 });
+
 process.env.DB_NAME = "testDB";
 describe("Auth", () => {
 	it("Should allow a valid user to sign up", async function () {

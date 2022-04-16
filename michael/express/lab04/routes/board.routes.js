@@ -135,8 +135,8 @@ router.delete("/:id", [jwtMiddleware], async (req, res) => {
 router.get("/", (req, res) => {
 	Board.find()
 		.populate("user")
-		.then((posts) => {
-			res.json(posts);
+		.then((boards) => {
+			res.json(boards);
 		}) // If no errors, return posts
 		.catch((err) => {
 			res.json(err);
