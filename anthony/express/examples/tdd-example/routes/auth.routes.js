@@ -35,11 +35,11 @@ router.post("/signup", [...signUpValidators], async (req, res) => {
   const userFound = await User.findOne({ username });
 
   if (userFound) {
-    return res.status(422).send({ error: "User already exists" });
+    return res.status(409).send({ error: "User already exists" });
   }
 
   if (password !== passwordCheck) {
-    return res.status(422).send({ error: "Passwords don't match" });
+    return res.status(401).send({ error: "Passwords don't match" });
   }
 
   const user = new User();
