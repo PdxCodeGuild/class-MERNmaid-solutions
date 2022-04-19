@@ -8,10 +8,14 @@ const boardSchema = Schema(
             type: String,
             required: true,
         },
+        
+    },{
         toJSON: {
             virtuals: true,
-        },
+
     }
+       
+    },
 );
 
 boardSchema.virtual("posts", {

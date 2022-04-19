@@ -17,11 +17,29 @@ const userSchema = Schema(
             default: false,
         },
         
+        
     },
    {
     timestamps: true,
+    toJSON: {
+        virtuals: true,
+    },
+
 }
 );
+
+userSchema.virtual("posts", {
+    ref: "Post",
+    localField: "_id",
+    foreignField: "user",
+    justOne: false,
+});
+userSchema.virtual("boards", {
+    ref: "board",
+    localField: "_id",
+    foreignField: "user",
+    justOne: false,
+});
 
 //make virtual for posts and board
 const User = mongoose.model("User", userSchema);

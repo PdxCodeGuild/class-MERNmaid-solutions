@@ -78,10 +78,15 @@ authRouter.post("/login", [...loginValidator], async (req, res) => { //... sprea
     res.send({ token });
 });
 
-authRouter.get('/profile', jwtMiddleware, async (req, res) => {
+
+authrouter.get('/profile', jwtMiddleware, async (req, res) => {
     const user = await User.findById({ _id: req.params.id})
+    const userPosts = await Post.find({ user: userId });
+    console.log(userPosts);
+    res.status(200).send({ user, userPosts });
 
 })
+
 
 
 module.exports = authRouter;
