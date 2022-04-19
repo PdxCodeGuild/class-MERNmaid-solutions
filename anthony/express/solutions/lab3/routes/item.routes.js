@@ -4,10 +4,12 @@ const Item = require("../models/Item.model");
 
 const router = Router();
 
-const { getModel } = require("./generic.routes");
-
 // LIST
-router.get("/", getModel(Item, "list"));
+router.get("/", async (req, res) => {
+  const items = await Item.find();
+
+  res.send(items);
+});
 
 // CREATE
 router.post("/create", async (req, res) => {
