@@ -22,7 +22,7 @@
 		"package.json": "^2.0.1"
 	},
 	"scripts": {
-		"start": "nodemon app.js",
+		"start": "nodemon index.js",
 		"test": "mocha"
 	}
 }
