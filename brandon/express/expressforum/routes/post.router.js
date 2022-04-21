@@ -12,6 +12,7 @@ const postRouter = Router();
 postRouter.get("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
+    if(!post){res.sendStatus(404)}
     res.send(post);
   } catch(error) {
     res.sendStatus(404);

@@ -21,6 +21,7 @@ boardRouter.get("/", async (req, res) => {
 boardRouter.get("/:id", async (req, res) => {
   try {
     const board = await Board.findById(req.params.id).populate("posts");
+    if(!board){res.sendStatus(404)}
     res.send(board);
   } catch(error) {
     res.sendStatus(404);

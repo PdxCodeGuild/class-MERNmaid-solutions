@@ -16,7 +16,9 @@ const itemSchema = Schema({
   list: {
     type: ObjectId,
     ref: "List",
-  }
+  },
+}, {
+  timestamps: true,
 });
 
 const Item = mongoose.model("Item", itemSchema);

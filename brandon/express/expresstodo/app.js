@@ -9,15 +9,15 @@ const PORT = process.env.PORT;
 const DB = process.env.DB;
 
 const app = express();
-const listsRouter = require("./routes/lists");
-const itemsRouter = require("./routes/items");
+const listsRouter = require("./routes/list.router");
+const itemsRouter = require("./routes/item.router");
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan("tiny"));
 
 app.use("/list", listsRouter);
-app.use("/items", itemsRouter)
+app.use("/item", itemsRouter)
 
 const connect = async () => {
   try {

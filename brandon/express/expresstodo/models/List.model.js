@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 
-const { Schema } = mongoose;
+const { Schema, model } = mongoose;
 
 const listSchema = Schema({
     name: String,
     },{
-    toJSON: {
-      virtuals: true,
+      timestamps: true,
+      toJSON: {
+        virtuals: true,
     }
 });
 
@@ -17,5 +18,5 @@ listSchema.virtual("items", {
   justOne: false,
 });
 
-const List = mongoose.model("List", listSchema);
+const List = model("List", listSchema);
 module.exports = List;
