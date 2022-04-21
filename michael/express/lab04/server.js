@@ -28,11 +28,9 @@ const startServer = async (port = process.env.PORT, hostname = "127.0.0.1") => {
 		console.log(`🚀 Listening at ${hostname}:${port}...\n`);
 	});
 };
-if (process.env.ENV !== "test") {
-	startServer();
-}
 
 module.exports = {
 	app,
 	startServer,
+	connectDatabase,
 };

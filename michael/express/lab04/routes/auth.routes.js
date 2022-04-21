@@ -5,6 +5,7 @@ const authRouter = Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Post = require("../models/Post.model");
+const jwtMiddleware = require("../helpers/jwt.middleware");
 
 const signupValidator = [
 	check("username", "Username is required")
@@ -42,12 +43,12 @@ authRouter.post("/signup", [...signupValidator], async (req, res) => {
 
 	const userFound = await User.findOne({ username });
 	if (userFound) {
-		return res.status(400).send({ errors: [{ msg: "User already exists" }] });
+		return res.status(409).send({ errors: [{ msg: "User already exists" }] });
 	}
 	const passwordMatch = password === passwordCheck;
 	if (!passwordMatch) {
 		return res
-			.status(400)
+			.status(401)
 			.send({ errors: [{ msg: "Password does not match" }] });
 	}
 
@@ -81,7 +82,7 @@ authRouter.post("/login", [...loginValidator], async (req, res) => {
 	const token = jwt.sign(sanitizeUser(user), process.env.JWT_SECRET, {
 		expiresIn: "1h",
 	});
-	res.status(201).send({ token });
+	res.status(200).send({ token });
 });
 
 // Profile
@@ -102,7 +103,7 @@ authRouter.post("/login", [...loginValidator], async (req, res) => {
 // });
 
 // A profile route for User that shows not only information about the currently logged in user but also every post they've made.
-authRouter.get("/profile/", async (req, res) => {
+authRouter.get("/profile/", [jwtMiddleware], async (req, res) => {
 	// Get the authorization token
 	const token = req.headers.authorization.split(" ")[1];
 	// Verify the token

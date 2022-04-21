@@ -3,10 +3,8 @@ const jwtMiddleware = require("../helpers/jwt.middleware");
 const jwt = require("jsonwebtoken");
 const router = Router();
 const Board = require("../models/Board.model");
-// const Post = require("../models/Post.model");
-// const User = require("../models/User.model");
 const { check, validationResult } = require("express-validator");
-const { reset } = require("nodemon");
+// const { reset } = require("nodemon");
 
 // Post Validator
 const postValidator = [
@@ -15,32 +13,29 @@ const postValidator = [
 ]; // end postValidator
 
 // Create a new board
-router.post("/new", [jwtMiddleware, ...postValidator], async (req, res) => {
+router.post("/", [jwtMiddleware, ...postValidator], async (req, res) => {
 	const errors = validationResult(req); // Check for errors
 
 	if (!errors.isEmpty()) {
 		return res.status(400).send({ errors: errors.array() });
 	} // If errors, return 400
 
-	const { userId } = req.user;
-	const { title, content } = req.body;
+	// if (await Board.findOne({ title })) {
+	// 	return res.status(403).send({ errors: [{ msg: "Board already exists" }] });
+	// } // If boardId does exist, return 400
 
-	if (await Board.findOne({ title })) {
-		return res.status(400).send({ errors: [{ msg: "Board already exists" }] });
-	} // If boardId does exist, return 400
-
-	console.log("test");
 	try {
 		const board = await Board.create({
 			title: req.body.title,
 			description: req.body.description,
-			user: req.user.id,
+			user: req.body.userId,
 		});
-		res.status(200).send(board);
+		res.status(201).send(board);
 	} catch (err) {
 		console.error(err.message);
 		res.status(500).send("Server Error");
 	}
+	res.status(700).send("failed");
 }); // End of new board
 
 // Read a board
@@ -52,7 +47,7 @@ router.get("/:id", [jwtMiddleware], (req, res) => {
 			if (!board) {
 				return res.status(404).send({ msg: "Board not found" });
 			} // If boardId does not exist, return 404
-			res.status(200).send(board);
+			res.status(215).send(board);
 		});
 }); // End of read board
 
@@ -136,7 +131,7 @@ router.get("/", (req, res) => {
 	Board.find()
 		.populate("user")
 		.then((boards) => {
-			res.json(boards);
+			res.status(200).json(boards);
 		}) // If no errors, return posts
 		.catch((err) => {
 			res.json(err);
