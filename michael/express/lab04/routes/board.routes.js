@@ -30,8 +30,10 @@ router.post("/", [jwtMiddleware, ...postValidator], async (req, res) => {
 			description: req.body.description,
 			user: req.body.userId,
 		});
+		// console.log("Created Board: " + board);
 		res.status(201).send(board);
 	} catch (err) {
+		// console.log(req.body);
 		console.error(err.message);
 		res.status(500).send("Server Error");
 	}
@@ -47,7 +49,7 @@ router.get("/:id", [jwtMiddleware], (req, res) => {
 			if (!board) {
 				return res.status(404).send({ msg: "Board not found" });
 			} // If boardId does not exist, return 404
-			res.status(215).send(board);
+			res.status(201).send(board);
 		});
 }); // End of read board
 
@@ -66,7 +68,7 @@ router.put("/:id", [jwtMiddleware], async (req, res) => {
 	// Get the userId from the token
 	const userId = decoded._id;
 
-	console.log(userId);
+	// console.log(userId);
 	// Only the owner of the board can delete it
 	const board = await Board.findById({ _id: id });
 	if (board === null) {
@@ -104,7 +106,7 @@ router.delete("/:id", [jwtMiddleware], async (req, res) => {
 	// Get the userId from the token
 	const userId = decoded._id;
 
-	console.log(userId);
+	// console.log(userId);
 	// Only the owner of the board can delete it
 	const board = await Board.findById({ _id: id });
 	if (board === null) {
@@ -131,10 +133,11 @@ router.get("/", (req, res) => {
 	Board.find()
 		.populate("user")
 		.then((boards) => {
+			// console.log("Boards: " + boards);
 			res.status(200).json(boards);
 		}) // If no errors, return posts
 		.catch((err) => {
-			res.json(err);
+			res.status(408).json(err);
 		}); // If errors, return error
 }); // End of list all boards
 

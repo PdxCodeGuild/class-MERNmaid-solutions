@@ -13,10 +13,6 @@ const jwtMiddleware = async (req, res, next) => {
 			const user = await User.findOne({ _id: payload._id });
 			req.user = user;
 			next();
-		} else {
-			res.status(402).json({
-				message: "Invalid",
-			});
 		}
 	} catch (error) {
 		console.log(error);

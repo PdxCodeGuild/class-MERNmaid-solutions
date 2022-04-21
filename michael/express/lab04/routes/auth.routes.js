@@ -118,7 +118,7 @@ authRouter.get("/profile/", [jwtMiddleware], async (req, res) => {
 
 	const userPosts = await Post.find({ user: userId });
 
-	console.log(userPosts);
+	// console.log(userPosts);
 	res.status(200).send({ user, userPosts });
 });
 

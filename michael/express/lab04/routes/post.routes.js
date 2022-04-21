@@ -16,11 +16,12 @@ const postValidator = [
 ]; // end postValidator
 
 // Create a new post
-router.post("/new", [jwtMiddleware, ...postValidator], async (req, res) => {
+router.post("/", [jwtMiddleware, ...postValidator], async (req, res) => {
 	const errors = validationResult(req); // Check for errors
 	const { title, content, boardId } = req.body;
 
 	if (!errors.isEmpty()) {
+		console.log(errors.array());
 		return res.status(400).send({ errors: errors.array() });
 	} // If errors, return 400
 
@@ -33,10 +34,13 @@ router.post("/new", [jwtMiddleware, ...postValidator], async (req, res) => {
 	// Get the userId from the token
 	const userId = decoded._id;
 
-	console.log(userId);
+	// console.log(userId);
 	// Only the owner of the post can delete it
+	// console.log("BoardID: " + boardId);
+	// console.log(Board.find().populate("user"));
 	const board = await Board.findById({ _id: boardId });
 	if (board === null) {
+		console.log("Board not found");
 		return res.status(404).json({ message: "Board not found" });
 	}
 
@@ -64,7 +68,8 @@ router.post("/new", [jwtMiddleware, ...postValidator], async (req, res) => {
 			user: userId,
 			board: boardId,
 		});
-		return res.status(201).json({ post });
+		// console.log(post);
+		return res.status(201).json(post);
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
@@ -76,8 +81,9 @@ router.get("/:id", [jwtMiddleware], async (req, res) => {
 
 	try {
 		post = await Post.findById({ _id: id });
-		return res.status(200).json({ post });
+		return res.status(201).json(post);
 	} catch (err) {
+		console.log(err);
 		return res.status(500).json({ message: err.message });
 	}
 }); // End of read post
@@ -88,6 +94,7 @@ router.put("/:id", [jwtMiddleware, ...postValidator], async (req, res) => {
 	const { title, content } = req.body;
 	const errors = validationResult(req); // Check for errors
 	if (!errors.isEmpty()) {
+		console.log(errors.array());
 		return res.status(400).send({ errors: errors.array() });
 	} // If errors, return 400
 
@@ -100,9 +107,9 @@ router.put("/:id", [jwtMiddleware, ...postValidator], async (req, res) => {
 	// Get the userId from the token
 	const userId = decoded._id;
 
-	console.log(userId);
+	// console.log(userId);
 	// Only the owner of the post can delete it
-	const post = await Post.findById({ _id: id });
+	let post = await Post.findById({ _id: id });
 	if (post === null) {
 		return res.status(404).json({ message: "Post not found" });
 	}
@@ -113,10 +120,17 @@ router.put("/:id", [jwtMiddleware, ...postValidator], async (req, res) => {
 		});
 	}
 
+	console.log(title);
 	try {
-		post = await Post.findByIdAndUpdate({ _id: id }, { title, content });
-		return res.status(200).json({ post });
+		post = await Post.findByIdAndUpdate(
+			{ _id: id },
+			{ title, content },
+			{ new: true }
+		);
+		// console.log(post);
+		return res.status(200).json(post);
 	} catch (err) {
+		console.log(err);
 		return res.status(500).json({ message: err.message });
 	}
 }); // End of update post
@@ -133,9 +147,9 @@ router.delete("/:id", [jwtMiddleware], async (req, res) => {
 	// Get the userId from the token
 	const userId = decoded._id;
 
-	console.log(userId);
+	// console.log(userId);
 	// Only the owner of the post can delete it
-	const post = await Post.findById({ _id: id });
+	let post = await Post.findById({ _id: id });
 	if (post === null) {
 		return res.status(404).json({ message: "Post not found" });
 	}
@@ -148,7 +162,7 @@ router.delete("/:id", [jwtMiddleware], async (req, res) => {
 
 	try {
 		post = await Post.findByIdAndDelete({ _id: id });
-		return res.status(200).json({ post });
+		return res.status(200).json(post);
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
@@ -158,7 +172,7 @@ router.delete("/:id", [jwtMiddleware], async (req, res) => {
 router.get("/", async (req, res) => {
 	try {
 		posts = await Post.find();
-		return res.status(200).json({ posts });
+		return res.status(200).json(posts);
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
