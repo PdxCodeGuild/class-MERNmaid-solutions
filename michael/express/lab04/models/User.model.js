@@ -6,6 +6,8 @@ const userSchema = new Schema(
 		username: { type: String, required: true, unique: true },
 		password: { type: String, required: true },
 		isAdmin: { type: Boolean, default: false },
+		post: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+		board: [{ type: Schema.Types.ObjectId, ref: "Board" }],
 	},
 	{
 		timestamps: true,
@@ -13,16 +15,18 @@ const userSchema = new Schema(
 	{ toJSON: { virtuals: true } }
 );
 
-userSchema.virtual("boards", {
-	ref: "Board",
-	localField: "_id",
-	foreignField: "owner",
-});
-
 userSchema.virtual("posts", {
 	ref: "Post",
-	localField: "_id",
-	foreignField: "author",
+	localField: "post",
+	foreignField: "post",
+	justOne: false,
+});
+
+userSchema.virtual("boards", {
+	ref: "Board",
+	localField: "board",
+	foreignField: "board",
+	justOne: false,
 });
 
 const User = mongoose.model("User", userSchema);
