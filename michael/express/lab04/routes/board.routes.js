@@ -15,8 +15,9 @@ const postValidator = [
 // Create a new board
 router.post("/", [jwtMiddleware, ...postValidator], async (req, res) => {
 	const errors = validationResult(req); // Check for errors
-
+	// console.log(errors);
 	if (!errors.isEmpty()) {
+		console.log(errors.array());
 		return res.status(400).send({ errors: errors.array() });
 	} // If errors, return 400
 
@@ -85,10 +86,11 @@ router.put("/:id", [jwtMiddleware], async (req, res) => {
 
 	Board.findByIdAndUpdate(id, updatedBoard, { new: true })
 		.then((board) => {
-			res.json(board);
+			return res.status(200).json(board);
 		}) // If no errors, return board
 		.catch((err) => {
-			res.json(err);
+			console.error(err.message);
+			return res.status(404).json(err);
 		}); // If errors, return error
 }); // End of update board
 
@@ -135,10 +137,7 @@ router.get("/", (req, res) => {
 		.then((boards) => {
 			// console.log("Boards: " + boards);
 			res.status(200).json(boards);
-		}) // If no errors, return posts
-		.catch((err) => {
-			res.status(408).json(err);
-		}); // If errors, return error
+		}); // If no errors, return posts
 }); // End of list all boards
 
 module.exports = router;

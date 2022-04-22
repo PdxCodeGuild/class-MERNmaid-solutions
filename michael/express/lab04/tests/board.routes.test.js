@@ -27,6 +27,19 @@ describe("Board Routes", () => {
 		process.env.BOARD_ID = this.boardId;
 		this.userId = res.body["user"];
 	});
+	it("should not create a board with no title", async () => {
+		const res = await chai
+			.request(app)
+			.post("/board/")
+			.set("Authorization", `Bearer ${process.env.TEST_TOKEN}`)
+			.send({
+				title: "",
+				description: "test",
+				userId: jwt.verify(process.env.TEST_TOKEN, process.env.JWT_SECRET)._id,
+			});
+
+		expect(res.status).to.eq(400);
+	});
 	it("should read a board", async () => {
 		const res = await chai
 			.request(app)
@@ -40,6 +53,7 @@ describe("Board Routes", () => {
 		expect(res.body["user"]).to.exist;
 		expect(res.body["_id"]).to.exist;
 	});
+
 	it("should update a board", async () => {
 		const res = await chai
 			.request(app)
@@ -58,6 +72,7 @@ describe("Board Routes", () => {
 		expect(res.body["user"]).to.exist;
 		expect(res.body["_id"]).to.exist;
 	});
+
 	it("should delete a board", async () => {
 		const res = await chai
 			.request(app)
@@ -71,6 +86,7 @@ describe("Board Routes", () => {
 		expect(res.body["user"]).to.exist;
 		expect(res.body["_id"]).to.exist;
 	});
+
 	it("should create a second board", async () => {
 		const res = await chai
 			.request(app)
@@ -92,6 +108,7 @@ describe("Board Routes", () => {
 		process.env.BOARD_ID = this.boardId;
 		this.userId = res.body["user"];
 	});
+
 	it("should get all boards", async () => {
 		const res = await chai
 			.request(app)
