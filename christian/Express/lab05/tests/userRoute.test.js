@@ -7,7 +7,7 @@ dotenv.config;
 chai.use(chaiHttp)
 
 
-describe("/user/signup userRoutes.js", () => {
+describe("/user/signup userRoute.js", () => {
   it("shuld allow a valid user to signup", async () => {
     const response = await chai.request(app).post("/user/signup").send({
       username: "Loki",
@@ -44,7 +44,7 @@ describe("/user/signup userRoutes.js", () => {
   });
 });
 
-describe("/user/login userRouter.js", () => {
+describe("/user/login userRoute.js", () => {
   it("Should allow a valid user to login", async () => {
     const response = await chai.request(app).post("/user/login").send({
       username: "Loki",
@@ -57,6 +57,7 @@ describe("/user/login userRouter.js", () => {
   });
 });
 
+//failing. Assertion error: expected undefined to exist
 describe("/user/profile userRoute.js", () => {
   it("Should allow a user to visit their profile", async () => {
     console.log(this.token, "heres the TOKEN")
@@ -64,7 +65,8 @@ describe("/user/profile userRoute.js", () => {
       .request(app)
       .get("/user/profile")
       .set("Authorization", `Bearer ${this.token}`);
+      
     chai.expect(response.status).to.eq(200);
-    chai.expect(response.body.username).exist;
+    chai.expect(response.body.username).to.exist;
   });
 });

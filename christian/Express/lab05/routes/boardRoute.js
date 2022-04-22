@@ -3,6 +3,7 @@ const jwtMiddleware = require("../helpers/jwtMiddleware");
 const Board = require("../Models/Board");
 const { check, validationResult } = require("express-validator");
 const Post = require("../Models/Post")
+const User = require("../Models/User")
 
 const router = Router();
 
@@ -41,7 +42,7 @@ router.patch('/update/:id', async (req, res) => {
 //Delete board
 router.delete('/delete/:id', jwtMiddleware, async (req, res) => {
     const board = await Board.findOne({ _id: req.params.id });
-    const user = await User.find({ user: userId });
+    const user = await User.find({ user: user._id });
     if (!board) {
         res.send(404);
     } else if (!user){

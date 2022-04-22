@@ -36,7 +36,6 @@ const connectDatabase = async (forum) => {
       const connection = await mongoose.connect(
         `mongodb://localhost/${forum}`
       );
-  
       if (process.env.ENV !== "test")
         console.log(`Connected to database "${forum}"...`);
       return connection;
