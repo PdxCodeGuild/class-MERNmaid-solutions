@@ -1,6 +1,8 @@
 const chai = require("chai");
 const dotenv = require("dotenv");
 const mocha = require("mocha")
+const { getToken } = require("./test-helper")
+const jwtMiddleware = require("../helpers/jwtMiddleware");
 const { app } = require("../server");
 const chaiHttp = require("chai-http")
 dotenv.config;
@@ -21,14 +23,35 @@ describe("/board/create boardRoute.js", () => {
     it("should allow a board to be retrieved", async () => {
         const response = await chai.request(app)
         .get(`/board/retrieve/${this.boardId}`)
-        console.log(response,'BOARD')
-        
         chai.expect(response.status).to.eq(200);
         chai.expect(response.body._id).to.exist;
     })
     //update board still working on it
     it("should allow a board to be updated", async () => {
         const response = await chai.request(app)
-        .patch(`/board/update/${this.boardId}`)
+        .patch(`/board/update/${this.boardId}`).send({
+            name: "board name change"
+        });
+        chai.expect(response.status).to.eq(200);
+        chai.expect(response.body._id).to.exist;
+        
+    });
+   //delete board test
+    it("Should allow only verified users to delete their board", async () => {
+        const token = await getToken()
+        const response = await chai.request(app)
+        .delete(`/board/delete/${this.boardId}`)
+        .set("Authorization", `Bearer ${token}`);
+        
+        chai.expect(response.status).to.eq(200);
+        chai.expect(response.body._id).to.exist;
+    });
+    //list board test
+    it("Should allow posts to be listed", async () => {
+        const response = await chai.request(app)
+        .get(`/board/list/${this.boardId}`)
+
+        chai.expect(response.status).to.eq(200)
+        chai.expect(response.body._id).to.exist;
     })
-})
+});

@@ -37,17 +37,23 @@ router.patch('/update/:id', async (req, res) => {
 
 });
 
-// Delete post
+// Delete post // issue finding user
 router.delete('/delete/:id',jwtMiddleware, async (req, res) => {
-    const post = await Post.findOne({ _id: req.params.id });
+    console.log("first log")
+    const post = await Post.findById({ _id: req.params.id });
     const user = await User.findById({ _id: req.params.id})
-    if (req.user._id = post._id) {
-        await post.remove(); 
-        
-    }else if (!post) {
-        res.send(404);
-    }
-    res.status(200).send({ post, user});
+    console.log(post, "ahhhhhhhhh")
+    console.log(user, "!!!!!!!!!!!")
+    if (!post) {
+        res.status(404).send("cannot find post")
+    } else if (post != user) {
+        res.status(403).send("unauthorized to delete post")
+
+    } else
+    await post.remove(); 
+    res.send(post)
+    console.log(post, "post!!!!")
+    // res.status(200).send({ post, user});
 })
 
 module.exports = router;

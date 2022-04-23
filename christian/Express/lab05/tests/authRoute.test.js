@@ -60,13 +60,13 @@ describe("/user/login userRoute.js", () => {
 //failing. Assertion error: expected undefined to exist
 describe("/user/profile userRoute.js", () => {
   it("Should allow a user to visit their profile", async () => {
-    console.log(this.token, "heres the TOKEN")
+    
     const response = await chai
       .request(app)
       .get("/user/profile")
       .set("Authorization", `Bearer ${this.token}`);
+      chai.expect(response.status).to.eq(200);
+      chai.expect(response.body.username).to.exist;
       
-    chai.expect(response.status).to.eq(200);
-    chai.expect(response.body.username).to.exist;
-  });
+    });
 });

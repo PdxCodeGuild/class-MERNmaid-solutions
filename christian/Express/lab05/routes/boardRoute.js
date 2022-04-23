@@ -41,8 +41,11 @@ router.patch('/update/:id', async (req, res) => {
 
 //Delete board
 router.delete('/delete/:id', jwtMiddleware, async (req, res) => {
+    
     const board = await Board.findOne({ _id: req.params.id });
-    const user = await User.find({ user: user._id });
+    
+    const user = await User.find({ user: req.user._id });
+    
     if (!board) {
         res.send(404);
     } else if (!user){
