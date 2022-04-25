@@ -4,8 +4,8 @@
   "description": "Boilerplate for PDX Code Guild express APIs",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
-    "test": "mocha ./test.js"
+    "dev": "nodemon index.js",
+    "test": "nyc --reporter=html --reporter=text mocha ./test --require=./test/test-helper.js --exit"
   },
   "author": "Anthony Wallace",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "mongoose": "^6.2.10",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
+    "nyc": "^15.1.0",
     "rimraf": "^3.0.2"
   },
   "bin": {
