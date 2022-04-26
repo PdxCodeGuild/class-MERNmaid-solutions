@@ -12,14 +12,14 @@ const authRouter = Router();
 
 const signupValidator = [
     //signup requirements
-    check("username").exists().isLength({ min: 4, max: 12 }), //username requirements
-    check("password").exists().isLength({ min: 6, max: 32 }), //password requirements
-    check("passwordCheck").exists().isLength({ min: 6, max: 32 }), //checks password to "password"
+    check("username").exists().isLength({ min: 3, max: 12 }), //username requirements
+    check("password").exists().isLength({ min: 3, max: 32 }), //password requirements
+    check("passwordCheck").exists().isLength({ min: 3, max: 32 }), //checks password to "password"
   ];
   
   const loginValidator = [
-    check("username").exists().isLength({ min: 4, max: 12 }),
-    check("password").exists().isLength({ min: 6, max: 32 }),
+    check("username").exists().isLength({ min: 3, max: 12 }),
+    check("password").exists().isLength({ min: 3, max: 32 }),
   ];
   
   //sanitizeUser 

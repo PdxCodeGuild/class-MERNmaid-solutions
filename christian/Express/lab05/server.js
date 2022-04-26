@@ -52,7 +52,7 @@ const connectDatabase = async (forum) => {
     });
   };
 
-
+runServer()
 
 module.exports = {
     app,
