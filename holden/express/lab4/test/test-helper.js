@@ -3,6 +3,10 @@ const chai = require("chai");
 const chaiHttp = require("chai-http");
 const dotenv = require("dotenv");
 
+const Board = require("../models/Board.model");
+const Post = require("../models/Post.model");
+const User = require("../models/User.model");
+
 const { connectDatabase, app } = require("../server");
 
 dotenv.config();

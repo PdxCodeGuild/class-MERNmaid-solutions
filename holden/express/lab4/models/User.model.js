@@ -22,10 +22,8 @@ const userSchema = Schema(
     toJSON: {
       virtuals: true,
     },
-  },
-  {
     timestamps: true,
-  }
+  },
 );
 
 userSchema.virtual("posts", {
