@@ -1,0 +1,13 @@
+.animal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.outlined {
+  border: 2px solid deeppink;
+  color: deepskyblue
+}
