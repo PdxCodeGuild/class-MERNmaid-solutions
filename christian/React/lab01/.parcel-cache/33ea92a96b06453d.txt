@@ -9,7 +9,7 @@
 172C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\@parcel\transformer-css\node_modules\.bin\browserslist.cmd132955656320394726 0
 113C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\package.json132955724883024963 0
 164C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\@parcel\core\test\PublicMutableBundleGraph.test.js132955656080130000 0
-105C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\dist132955780265947525 1
+105C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\dist132956572697279013 1
 174C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\posthtml\node_modules\posthtml-parser\dist\chunk.2UQLUWPH.js132955656101530000 0
 141C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\source-map\lib\array-set.js132948796684300000 0
 145C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\caniuse-lite\data\regions\SZ.js132948796693350000 0
@@ -72,7 +72,7 @@
 115C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\src\index.html132955710512409744 0
 150C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\@parcel\core\test\serializer.test.js132955656080130000 0
 150C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\svgo\plugins\removeOffCanvasPaths.js132955656095930000 0
-123C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\src\components\List.js132955780263368944 0
+123C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\src\components\List.js132956572694693291 0
 149C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\dom-serializer\lib\esm\package.json132955656123960000 0
 133C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\weak-lru-cache\dist132955656170395815 1
 140C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\caniuse-lite\data\features132955656180763731 1
@@ -82,7 +82,7 @@
 159C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\@parcel\transformer-postcss\lib\loadConfig.js132955656088750000 0
 120C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\@lezer132955656139645842 1
 151C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\css-tree\lib\syntax\scope\selector.js132955656105280000 0
-123C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\src\components\Task.js132955753161376832 0
+123C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\src\components\Task.js132956560170340879 0
 145C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\@parcel\core\lib\projectPath.js132955656080130000 0
 156C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\@parcel\markdown-ansi\lib\markdown-ansi.js132955656103680000 0
 134C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\terser\lib\minify.js132955656097280000 0
@@ -1943,7 +1943,7 @@
 147C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\csso\lib\replace\property\font.js132955656106750000 0
 128C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\lmdb\README.md132955656103600000 0
 162C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\electron-to-chromium\full-chromium-versions.json132955656107500000 0
-128C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\dist\index.2cdaf7bc.css.map132955729078185690 0
+128C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\dist\index.2cdaf7bc.css.map132956560647909777 0
 123C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\lmdb\util132955656158975857 1
 127C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\lmdb\write.js132955656103600000 0
 151C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\caniuse-lite\data\features\picture.js132948796693350000 0
@@ -2673,7 +2673,7 @@
 149C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\css-tree\lib\syntax\atrule\media.js132955656105280000 0
 163C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\@parcel\transformer-svg\test\parseFuncIRI.test.js132955656090970000 0
 153C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\css-tree\lib\lexer\generic-an-plus-b.js132955656105280000 0
-116C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\dist\index.html132955729080329954 0
+116C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\dist\index.html132956560650154841 0
 143C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\css-tree\lib\lexer\generic.js132955656105280000 0
 143C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\@lezer\lr\dist\constants.d.ts132955656110950000 0
 154C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\caniuse-lite\data\features\es6-module.js132948796693350000 0
@@ -4294,6 +4294,6 @@
 129C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\.bin\semver.cmd132955656322780160 0
 123C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\.bin\svgo132955656322839989 0
 127C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\node_modules\.bin\svgo.cmd132955656322839989 0
-124C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\dist\index.2cdaf7bc.css132955729078145794 0
-123C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\dist\index.7271efb6.js132955780265505022 0
-127C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\dist\index.7271efb6.js.map132955780265584816 0
+124C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\dist\index.2cdaf7bc.css132956560647820022 0
+123C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\dist\index.7271efb6.js132956572696750810 0
+127C:\Users\Christian\Desktop\javascript-node-react\adv-node-react-2022-solutions\christian\react\lab01\dist\index.7271efb6.js.map132956572696870141 0
