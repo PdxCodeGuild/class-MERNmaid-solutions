@@ -1,0 +1,9 @@
+body {
+	font-size: 2em;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
