@@ -29,11 +29,11 @@ app.use("/profile", ProfileRoutes);
 const dbUrl = process.env.DB_URL;
 const port = process.env.PORT;
 
-const connectDataBase = async () => {
+const connectDataBase = async (dbUrl) => {
   try {
-    const connectDataBase = await mongoose.connect(dbUrl);
+    const connection = await mongoose.connect(dbUrl);
     if (process.env.ENV !== "test") console.log("connected to db");
-    return connectDataBase;
+    return connection;
     
   } catch (err) {
     if (process.env.ENV !== "test") console.log(err);
@@ -41,7 +41,7 @@ const connectDataBase = async () => {
 };
 
 const startServer = async () => {
-  await connectDataBase("development")
+  await connectDataBase(dbUrl)
   app.listen(port, () => {
     console.log(`Listening on port ${port}`)
   })

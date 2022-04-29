@@ -10,7 +10,6 @@ router.get("/", async (req, res) => {
     res.send( { items });
 })
 
-
 // CREATE
 router.post("/", async (req,res) => {
     const item = new Item(req.body);
@@ -46,8 +45,6 @@ router.patch("/:id", async (req, res) => {
 
     res.send(item);
 })
-
-
 
 // Delete 
 router.delete('/:id', async (req, res) => {
