@@ -13,11 +13,17 @@ router.post("/", jwtMiddleware, async (req, res) => {
   }
   const { boardName } = req.body
   const boardFound = await Board.findOne({ boardName });
-  if (boardFound) {
-    return res.status(400).send({ errors: "boardName exists" });
+  if (boardFound || boardName.toLowerCase() == "boardlist") {
+    return res.status(409).send({ errors: "boardName exists" });
   }
   const board = new Board(req.body);
   await board.save();
+  res.send(board);
+});
+
+router.get("/boardlist", async (req, res) => {
+  console.log("here?");
+  const board = await Board.find({});
   res.send(board);
 });
 
@@ -35,7 +41,7 @@ router.patch("/:name", jwtMiddleware, async (req, res) => {
   if (!board) {
     return res.sendStatus(404);
   }
-  if (board.user != req.user && !req.user.isAdmin) {
+  if (!req.user.isAdmin) {
     return res.status(403).send("unauthorized");
   }
 
@@ -54,12 +60,13 @@ router.delete("/:name", jwtMiddleware, async (req, res) => {
   if (!board) {
     return res.sendStatus(404);
   }
-  if (board.user != req.user && !req.user.isAdmin) {
+  if (!req.user.isAdmin) {
     return res.status(403).send("unauthorized");
   }
 
   await board.remove();
   res.send(board);
 });
+
 
 module.exports = router;
