@@ -21,6 +21,12 @@ router.post("/", jwtMiddleware, async (req, res) => {
   res.send(board);
 });
 
+router.get("/boardlist", async (req, res) => {
+  console.log("here?");
+  const board = await Board.find({});
+  res.send(board);
+});
+
 router.get("/:boardName", async (req, res) => {
   const board = await Board.findOne({ boardName: req.params.boardName }).populate("posts");
   if (!board) {
