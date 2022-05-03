@@ -1,0 +1,25 @@
+#header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: white;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: white;
+}
+
+.pages {
+  width: 100%;
+  padding: 7rem 3%;
+}
+
+.tab {
+  padding: 1rem;
+}
