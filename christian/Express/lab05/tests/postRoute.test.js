@@ -47,5 +47,12 @@ describe("/post/create postRoute.js", () => {
         chai.expect(response.status).to.eq(200);
         chai.expect(response.body._id).to.exist;
     });
+    it("should return list of posts", async () => {
+        const response = await chai.request(app)
+        .get(`/post/list/${this.postId}`)
+        chai.expect(response.status).to.eq(200)
+        chai.expect(response.body._id).to.exist
+
+    })
     
 });
