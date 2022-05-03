@@ -3,12 +3,14 @@ import { Link } from "./components/link";
 
 import Home from "./pages/home";
 import Navbar from "./components/Navbar";
+import HeroSection from "./components/HeroSection";
 import NotFound from "./pages/notfound";
 import "./index.css";
 
 const App = () => {
 	return (
 		<BrowserRouter>
+			<HeroSection />
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Home />} />
