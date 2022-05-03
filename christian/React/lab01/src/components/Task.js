@@ -4,12 +4,7 @@
 // const Task = (props) => {
 //     const [completed, setComplete] = useState(false);
 
-//     const toggleCompleted = (e) => {
-//         setComplete(!completed)
-
-
-//     }
-
+    
 //     return (
 //         <div className="todo">
 //             <p className={completed ? "completed" : ""}>{props.name}</p>
