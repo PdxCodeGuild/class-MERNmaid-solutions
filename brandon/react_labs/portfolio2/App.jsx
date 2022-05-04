@@ -10,16 +10,24 @@ import ContactPage from "./pages/Contact.page";
 import Footer from "./components/Footer";
 
 const App = () => {
+  const [dark, setDark] = useState(false);
+
+  const handleDarken = () => {
+    setDark(!dark);
+    console.log("darken ship.", dark)
+  };
 
   return(
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomePage/>} />
-        <Route path="/contact" element={<ContactPage/>} />
-        <Route path="*" element={<HomePage/>} />
-      </Routes>
-      <Footer />
+      <div className={dark ? "dark" : "light"}>
+        <Header darken={handleDarken} dark={dark}/>
+        <Routes>
+          <Route path="/" element={<HomePage/>} />
+          <Route path="/contact" element={<ContactPage/>} />
+          <Route path="*" element={<HomePage/>} />
+        </Routes>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 };

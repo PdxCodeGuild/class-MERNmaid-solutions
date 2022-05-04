@@ -8,14 +8,14 @@ import Work from "../components/Work";
 const Home = () => {
   return (
     <div id="homePage" className="pages">
-      <Tabs id="tabs" defaultActiveKey="hello">
-        <Tab className="tab" eventKey="hello" title="Hello!">
+      <Tabs defaultActiveKey="hello">
+        <Tab className="helloTab" eventKey="hello" title="Hello!">
           <Hello />
         </Tab>
-        <Tab className="tab" eventKey="education" title="Education">
+        <Tab className="outerTab" eventKey="education" title="Education">
           <Education />
         </Tab>
-        <Tab className="tab" eventKey="employment" title="Employment History">
+        <Tab className="outerTab" eventKey="employment" title="Employment History">
           <Work />
         </Tab>
       </Tabs>
