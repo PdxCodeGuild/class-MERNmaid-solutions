@@ -27,6 +27,31 @@ const getToken = async () =>{
     return response.body.token;
   }
 
+  // function to create a user
+  // from that user, get ID
+  // pass it in to new created post
+  //repeat to create a board
+  const createUser =  async () => {
+    const response = await chai.request(app).post("/user/signup").send({
+      username: "Loki",
+      password: "123456789",
+      passwordCheck: "123456789"
+    })
+    return response.body._id
+  }
+  const createBoard = async () => {
+    const response = await chai.request(app).post("/board/create").send({
+      name: "board"
+      
+
+    })
+    
+    return response.body
+  }
+  console.log(createBoard())
+
   module.exports = {
-    getToken
+    getToken,
+    createUser,
+    createBoard
   }

@@ -41,6 +41,7 @@ router.patch('/update/:id', async (req, res) => {
 router.delete('/delete/:id',jwtMiddleware, async (req, res) => {
     
     const post = await Post.findById({ _id: req.params.id })
+    console.log(post, "POST!")
     if(!post) {
         res.status(404)
     } else if (post.user !== req.user.id) {

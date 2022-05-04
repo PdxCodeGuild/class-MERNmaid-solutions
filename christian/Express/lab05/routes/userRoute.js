@@ -83,9 +83,9 @@ authRouter.post("/login", [...loginValidator], async (req, res) => { //... sprea
 
 authRouter.get('/profile', jwtMiddleware, async (req, res) => {
     const user = await User.findOne({ _id: req.user._id})
-    console.log(user,"hellooooooo")
+    // console.log(user,"hellooooooo")
     const userPosts = await Post.find({ user: user._id });
-    console.log(userPosts);
+    // console.log(userPosts, "USSR");
     res.status(200).send({ user, userPosts });
 
 })
