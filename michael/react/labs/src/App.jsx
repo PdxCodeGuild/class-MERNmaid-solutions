@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Link } from "./components/link";
 
 import Home from "./pages/home";
-import Navbar from "./components/Navbar";
+import Navbar404 from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import NotFound from "./pages/notfound";
 import "./index.css";
@@ -10,14 +10,25 @@ import "./index.css";
 const App = () => {
 	return (
 		<BrowserRouter>
-			<HeroSection />
-			<Navbar />
 			<Routes>
-				<Route path="/" element={<Home />} />
-				{/* <Route path="/" element={<Link to="/">Home</Link>} /> */}
-
-				{/* Not found */}
-				<Route path="*" element={<NotFound />} />
+				<Route
+					path="/"
+					element={
+						<div>
+							<HeroSection />
+							<Home />
+						</div>
+					}
+				/>
+				<Route
+					path="*"
+					element={
+						<div>
+							<Navbar404 />
+							<NotFound />
+						</div>
+					}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);
