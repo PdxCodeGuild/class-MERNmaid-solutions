@@ -40,13 +40,17 @@ router.patch('/update/:id', async (req, res) => {
 // Delete post 
 router.delete('/delete/:id',jwtMiddleware, async (req, res) => {
     
+    
     const post = await Post.findById({ _id: req.params.id })
     console.log(post, "POST!")
     if(!post) {
+        console.log("if statement ran")
         res.status(404)
     } else if (post.user !== req.user.id) {
+        console.log("else if ran")
         res.status(403)
     } else {
+        console.log("else ran")
         await post.remove()
         res.send(post)
     }

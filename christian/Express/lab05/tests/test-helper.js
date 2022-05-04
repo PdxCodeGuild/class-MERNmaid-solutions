@@ -17,41 +17,51 @@ setTimeout(() => {
     await this.db.connection.close();
   });
 });
-const getToken = async () =>{
+const getToken = async () => {
 
-    const response = await chai.request(app).post("/user/login").send({
-      username: "Loki",
-      password: "123456789",
-    });
-    
-    return response.body.token;
-  }
+  const response = await chai.request(app).post("/user/login").send({
+    username: "Loki",
+    password: "123456789",
+  });
 
-  // function to create a user
-  // from that user, get ID
-  // pass it in to new created post
-  //repeat to create a board
-  const createUser =  async () => {
-    const response = await chai.request(app).post("/user/signup").send({
-      username: "Loki",
-      password: "123456789",
-      passwordCheck: "123456789"
-    })
-    return response.body._id
-  }
-  const createBoard = async () => {
-    const response = await chai.request(app).post("/board/create").send({
-      name: "board"
-      
+  return response.body.token;
+}
 
-    })
-    
-    return response.body
-  }
-  console.log(createBoard())
+// function to create a user
+// from that user, get ID
+// pass it in to new created post
+//repeat to create a board
+const createUser = async () => {
+  const response = await chai.request(app).post("/user/signup").send({
+    username: "Thor",
+    password: "123456789",
+    passwordCheck: "123456789"
+  })
+  return response.body._id
+}
+const createBoard = async () => {
+  const response = await chai.request(app).post("/board/create").send({
+    name: "board"
 
-  module.exports = {
-    getToken,
-    createUser,
-    createBoard
-  }
+
+  })
+
+  return response.body
+}
+const getThor = async () => {
+
+  const response = await chai.request(app).post("/user/login").send({
+    username: "Thor",
+    password: "123456789",
+  });
+
+  return response.body.token;
+}
+
+
+module.exports = {
+  getToken,
+  createUser,
+  createBoard,
+  getThor
+}
