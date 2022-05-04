@@ -1,5 +1,6 @@
 .DS_Store
 .vscode
+.parcel-cache
 # Logs
 logs
 *.log
