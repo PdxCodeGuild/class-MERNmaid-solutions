@@ -16,7 +16,32 @@ describe("/post/ post.routes.js", () => {
 
     chai.expect(response.status).to.eq(401);
   });
-  
+
+  it("should allow an authenticated user post", async () => {
+    const response = await chai.request(app).post("/post/").set("Authorization", `Bearer ${process.env.TOKEN}`).send({
+      title: "testpost1",
+      content: "testcontent",
+      board: process.env.BOARDID,
+    });
+
+    chai.expect(response.status).to.eq(200);
+    chai.expect(response.body.title).to.be.eq("testpost1");
+    chai.expect(response.body.content).to.be.eq("testcontent");
+    chai.expect(response.body._id).to.exist;
+    const userPost = response.body._id;
+  });
+
+  it("should allow an authenticated user post", async () => {
+    const response = await chai.request(app).post("/post/").set("Authorization", `Bearer ${process.env.TOKEN}`).send({
+      title: "testpost1",
+      content: "testcontent",
+      board: process.env.BOARDID,
+    });
+
+    chai.expect(response.status).to.eq(200);
+    chai.expect(response.body.title).to.be.eq("testpost1");
+    chai.expect(response.body.content).to.be.eq("testcontent");
+  });
 
 });
 
