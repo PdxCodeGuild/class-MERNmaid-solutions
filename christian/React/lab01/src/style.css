@@ -1,0 +1,27 @@
+#root{
+    display: flex;
+    justify-content: center;
+    
+    
+}
+
+/* 
+.list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: blue;
+    
+
+    
+}
+ 
+.items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+
+.complete {
+    text-decoration:solid;
+} */
