@@ -4,11 +4,11 @@ import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 const navigation = [
-	{ name: "Lab 1", href: "#" },
-	{ name: "Lab 2", href: "#" },
-	{ name: "Lab 3", href: "#" },
-	{ name: "Lab 4", href: "#" },
-	{ name: "Lab 5", href: "#" },
+	{ name: "Lab 1", href: "/lab01" },
+	{ name: "Lab 2", href: "/lab02" },
+	{ name: "Lab 3", href: "/lab03" },
+	{ name: "Lab 4", href: "/lab04" },
+	{ name: "Lab 5", href: "/lab05" },
 ];
 
 export default function Example() {
@@ -136,15 +136,18 @@ export default function Example() {
 							<div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
 								<div className="rounded-md shadow">
 									<a
-										href="#"
+										href="https://www.github.com/cdmichaelb"
 										className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
 									>
-										First Lab
+										Github Repo
 									</a>
 								</div>
 								<div className="mt-3 sm:mt-0 sm:ml-3">
 									<a
-										href="#"
+										href={
+											navigation[Math.floor(Math.random() * navigation.length)]
+												.href
+										}
 										className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10"
 									>
 										Random Lab

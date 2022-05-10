@@ -11,6 +11,7 @@ const Navbar = () => {
 			<div>
 				<Link to="/">Home </Link>
 				<button onClick={forceUpdate}>Force re-render</button>
+				<Link to="TodoList">Lab01 ToDo App</Link>
 				{/* <Link to="/about">About </Link> */}
 				{/* <Link to="/contact">Contact </Link> */}
 			</div>
