@@ -26,19 +26,14 @@ function App() {
 
   const calculateScore = (hand, setScore) => {
     console.log("Hello", hand)
-    const total = hand.reduce((prev, curr) => {
+    const total = hand.reduce((total, card) => {
 
-      console.log("prev", prev)
-      prev.value = !isNaN(prev.value)
-      ? parseInt(prev.value) :
-      prev.value === "ACE" ? 1 : 10
+      console.log("card", card)
+      card.value = !isNaN(card.value)
+      ? parseInt(card.value) :
+      card.value === "ACE" ? 1 : 10
 
-      console.log("curr", curr)
-      curr.value = !isNaN(curr.value)
-      ? parseInt(curr.value) :
-      curr.value === "ACE" ? 1 : 10
-
-      return total + curr.value
+      return total + card.value
     }, 0)
     console.log(total)
   }
