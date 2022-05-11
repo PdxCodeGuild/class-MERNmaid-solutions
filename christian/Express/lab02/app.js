@@ -33,10 +33,12 @@ app.get('/people/:id', async (req, res) => {
     }
 });
 //update person
-app.patch('people/:id', async (req, res) => {
+app.patch('/people/:id', async (req, res) => {
     //same as delete except use .patch
     const person = await Person.findOne({_id: req.params.id});
-    if(!person) {res.send(404)};
+    if(!person) {
+        res.send(404)
+    };
     const personInfo = req.body;
     person.set(personInfo) //.set to update info
     await person.save();
@@ -45,21 +47,21 @@ app.patch('people/:id', async (req, res) => {
 
 });
 //delete person
-app.delete('/person/:id', async (req, res) => {
+app.delete('/people/:id', async (req, res) => {
     const person = await Person.findOne({ _id: req.params.id });
     if (!person) {
-    res.send(404);
+     res.send(404);
     }
     await person.remove(); // .remove deletes person
     res.send(person);
 
 })
 //retrieve person
-app.get("/person", async (req, res) => {
+app.get("/people", async (req, res) => {
     const person = await Person.find();
     res.send(person);
   
-  });
+});
   
 
 

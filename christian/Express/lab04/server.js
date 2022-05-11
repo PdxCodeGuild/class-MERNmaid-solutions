@@ -29,23 +29,34 @@ app.use("/post", postRouter) //similar to django URLs
 
 
 
-// app.get("/", async (req, res) => {
-// 	res.send("hellooo")
-// })
+
+const connectDatabase = async (forum) => {
+    try {
+      const connection = await mongoose.connect(
+        `mongodb://localhost/${forum}`
+      );
+  
+      if (process.env.ENV !== "test")
+        console.log(`Connected to database "${forum}"...`);
+      return connection;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  
+  const runServer = async (port = 80, hostname = "localhost") => {
+    await connectDatabase("forum");
+  
+    app.listen(port, hostname, () => {
+      console.log(`Listening at ${hostname}:${port}`);
+    });
+  };
 
 
-
-const runServer = async () => {
-    await mongoose.connect('mongodb://localhost:27017/forum') //connect to mongoose
-    console.log('success');
-
-    app.listen(80, () => { //app.listen to connect server and app
-        console.log('server is listening to port 80')
-    })
-}
 
 module.exports = {
     app,
+    connectDatabase,
     runServer,
 }
 

@@ -1,0 +1,13 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid gray;
+  max-width: 200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.checked {
+  text-decoration: line-through;
+}
