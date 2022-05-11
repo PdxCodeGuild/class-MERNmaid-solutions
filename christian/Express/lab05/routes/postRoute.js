@@ -42,11 +42,13 @@ router.delete('/delete/:id',jwtMiddleware, async (req, res) => {
     
     
     const post = await Post.findById({ _id: req.params.id })
-    console.log(post, "POST!")
+    console.log(post.user.toString(), "POST!")
+
+    console.log(req.user.id, "req.user.id")
     if(!post) {
         console.log("if statement ran")
         res.status(404)
-    } else if (post.user !== req.user.id) {
+    } else if (post.user.toString() !== req.user.id) {
         console.log("else if ran")
         res.status(403)
     } else {

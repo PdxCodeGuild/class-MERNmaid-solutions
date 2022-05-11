@@ -37,6 +37,7 @@ const createUser = async () => {
     password: "123456789",
     passwordCheck: "123456789"
   })
+  console.log(response.body._id, "THOR ID")
   return response.body._id
 }
 const createBoard = async () => {
@@ -54,6 +55,7 @@ const getThor = async () => {
     username: "Thor",
     password: "123456789",
   });
+  // console.log(response.body, "THOR LOGIN")
 
   return response.body.token;
 }

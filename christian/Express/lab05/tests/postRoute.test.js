@@ -14,8 +14,9 @@ chai.use(chaiHttp)
 //create post test
 describe("/post/create postRoute.js", () => {
     it("Should allow a post to be created", async () => {
-        this.token = await getThor()
         const user = await createUser()
+        this.token = await getThor()
+        // console.log(this.token, "TOKEN")
         const board = await createBoard()
         const response = await chai.request(app).post("/post/create").send({
             title: 'title',
@@ -25,6 +26,7 @@ describe("/post/create postRoute.js", () => {
 
         });
         this.postId = response.body._id
+        console.log(response.body.user, "RESPONSE.BODY.USER")
         chai.expect(response.status).to.eq(200);
         chai.expect(response.body._id).to.exist;
     });
