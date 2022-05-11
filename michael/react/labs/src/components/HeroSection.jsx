@@ -2,14 +2,21 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import Link from "../components/Link";
 
 const navigation = [
-	{ name: "Lab 1", href: "/lab01" },
+	{ name: "Lab 1", href: "Lab01" },
 	{ name: "Lab 2", href: "/lab02" },
 	{ name: "Lab 3", href: "/lab03" },
 	{ name: "Lab 4", href: "/lab04" },
 	{ name: "Lab 5", href: "/lab05" },
 ];
+
+/* Give a random link from navigation every 1 seconds */
+const randomLink = () => {
+	const randomIndex = Math.floor(Math.random() * navigation.length);
+	return navigation[randomIndex];
+};
 
 export default function Example() {
 	return (
@@ -51,20 +58,20 @@ export default function Example() {
 								</div>
 								<div className="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
 									{navigation.map((item) => (
-										<a
+										<Link
 											key={item.name}
-											href={item.href}
+											to={item.href}
 											className="font-medium text-gray-500 hover:text-gray-900"
 										>
 											{item.name}
-										</a>
+										</Link>
 									))}
-									<a
-										href="#"
+									<Link
+										to="#"
 										className="font-medium text-indigo-600 hover:text-indigo-500"
 									>
 										Log in
-									</a>
+									</Link>
 								</div>
 							</nav>
 						</div>
@@ -100,13 +107,13 @@ export default function Example() {
 									</div>
 									<div className="px-2 pt-2 pb-3 space-y-1">
 										{navigation.map((item) => (
-											<a
+											<Link
 												key={item.name}
-												href={item.href}
+												to={item.href}
 												className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
 											>
 												{item.name}
-											</a>
+											</Link>
 										))}
 									</div>
 									<a
@@ -143,15 +150,15 @@ export default function Example() {
 									</a>
 								</div>
 								<div className="mt-3 sm:mt-0 sm:ml-3">
-									<a
-										href={
+									<Link
+										to={
 											navigation[Math.floor(Math.random() * navigation.length)]
 												.href
 										}
 										className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10"
 									>
 										Random Lab
-									</a>
+									</Link>
 								</div>
 							</div>
 						</div>
