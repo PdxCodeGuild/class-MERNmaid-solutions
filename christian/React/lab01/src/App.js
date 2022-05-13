@@ -35,8 +35,10 @@ const App = () => {
     const addTodoClick = () => {
         setItem([
             ...items,
-            { "name": newItem }
+            { "name": newItem,
+              "completed": false}
         ])
+       
     };
     // remove item
     const removeClick = (index) => {

@@ -3,10 +3,10 @@ import Item from "./Item"
 
 const List = ({items, toggleCompleted, removeClick}) => {
 
-    console.log(items, "PROPS")
+    // console.log(items, "PROPS")
 
     return (
-        <div className="items ">
+        <div className="items">
             {items.map((item, index) => (
                 <Item key={index} index={index} item={item} toggleCompleted={toggleCompleted} removeClick={removeClick}  />
             ))}
@@ -15,12 +15,6 @@ const List = ({items, toggleCompleted, removeClick}) => {
                 
                 
                 
-             
-
-
-
 }
-
-
 
 export default List
