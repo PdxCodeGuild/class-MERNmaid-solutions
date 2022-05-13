@@ -3,9 +3,9 @@
 const Home = () => {
 
     return (
-        <div className="intro">
+        <div className="bg-indigo-500">
             <div classNAme="image">
-                <img src="me.jpeg"></img>
+                <img src="./images/me"></img>
 
             </div>
             <h1> Christian Portfolio</h1>
@@ -16,3 +16,5 @@ const Home = () => {
     )
     
 }
+
+export default Home;
