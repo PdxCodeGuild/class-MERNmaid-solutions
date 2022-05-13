@@ -8,7 +8,7 @@ const List = ({items, toggleCompleted, removeClick}) => {
     return (
         <div className="items ">
             {items.map((item, index) => (
-                <Item key={index} item={item} toggleCompleted={toggleCompleted} removeClick={removeClick}  />
+                <Item key={index} index={index} item={item} toggleCompleted={toggleCompleted} removeClick={removeClick}  />
             ))}
         </div>
     )

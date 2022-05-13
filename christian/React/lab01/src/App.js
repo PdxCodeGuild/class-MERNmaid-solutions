@@ -22,7 +22,8 @@ const App = () => {
     //toggle completed
     const toggleCompleted = (e, index) => {
         const checkBox = [...items] //get todo array make new array
-        checkBox[index].completed = !checkBox[index].completed //target completed value in the arrat. Flip with "!" and use new array
+        checkBox[index].completed = !checkBox[index].completed //target completed value in the array. Flip with "!" and use new array
+        console.log(checkBox[index].completed)
         setItem(checkBox)
     }
     //target change of value
