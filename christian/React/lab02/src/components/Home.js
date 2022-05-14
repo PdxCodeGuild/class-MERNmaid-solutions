@@ -3,8 +3,8 @@
 const Home = () => {
 
     return (
-        <div className="bg-indigo-500">
-            <div classNAme="image">
+        <div className="">
+            <div className="image">
                 <img src="./images/me"></img>
 
             </div>
