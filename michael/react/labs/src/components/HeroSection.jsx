@@ -1,18 +1,17 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from "react";
+import { Fragment, useState, useCallback } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "../components/Link";
 
 const navigation = [
 	{ name: "Lab 1", href: "Lab01" },
-	{ name: "Lab 2", href: "/lab02" },
-	{ name: "Lab 3", href: "/lab03" },
-	{ name: "Lab 4", href: "/lab04" },
-	{ name: "Lab 5", href: "/lab05" },
+	{ name: "Lab 2", href: "Lab02" },
+	{ name: "Lab 3", href: "Lab03" },
+	{ name: "Lab 4", href: "Lab04" },
+	{ name: "Lab 5", href: "Lab05" },
 ];
 
-/* Give a random link from navigation every 1 seconds */
 const randomLink = () => {
 	const randomIndex = Math.floor(Math.random() * navigation.length);
 	return navigation[randomIndex];
@@ -151,10 +150,7 @@ export default function Example() {
 								</div>
 								<div className="mt-3 sm:mt-0 sm:ml-3">
 									<Link
-										to={
-											navigation[Math.floor(Math.random() * navigation.length)]
-												.href
-										}
+										to={randomLink().href}
 										className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10"
 									>
 										Random Lab
