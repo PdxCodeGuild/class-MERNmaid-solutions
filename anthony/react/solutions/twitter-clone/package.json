@@ -6,7 +6,8 @@
 	"scripts": {
 		"concurrent": "concurrently -p [{name}] -c bgBlue.bold,bgGreen.bold -n API,UI",
 		"start": "yarn concurrent \"cd api && yarn start\"",
-		"start-ui": "'cd ui && yarn start'"
+		"start-ui": "'cd ui && yarn start'",
+		"test": "cd api && yarn test"
 	},
 	"dependencies": {
 		"concurrently": "^7.2.0"

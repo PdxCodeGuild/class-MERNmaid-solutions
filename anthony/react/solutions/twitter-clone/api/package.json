@@ -4,7 +4,8 @@
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
-		"start": "nodemon ./src/index.js --watch ./src"
+		"start": "nodemon ./src/index.js --watch ./src",
+		"test": "nyc --reporter=html mocha ./test --require=./test/test-helper.js --exit"
 	},
 	"dependencies": {
 		"bcrypt": "^5.0.1",

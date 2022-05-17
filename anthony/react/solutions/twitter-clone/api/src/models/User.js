@@ -44,7 +44,7 @@ const userSchema = Schema({
   }
 })
 
-userSchema.static.signup = async function (username, password, email) {
+userSchema.statics.signup = async function (username, password, email) {
   const user = new this()
   user.username = username
   user.hashPassword(password)
@@ -55,7 +55,7 @@ userSchema.static.signup = async function (username, password, email) {
 }
 
 userSchema.methods.hashPassword = function (plainText) {
-  this.password = bcrypt(plainText, 4)
+  this.password = bcrypt.hashSync(plainText, 4)
 }
 
 userSchema.methods.sanitize = function () {

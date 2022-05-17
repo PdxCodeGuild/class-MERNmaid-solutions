@@ -23,6 +23,7 @@ app.use(morgan("tiny"))
 app.use(cors())
 app.use(express.json())
 
+// Routes
 app.use("/auth", authRoutes)
 
 // Connect to Database
