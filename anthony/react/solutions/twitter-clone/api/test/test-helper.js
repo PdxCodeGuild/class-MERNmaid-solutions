@@ -5,6 +5,11 @@ const dotenv = require("dotenv")
 const path = require("path")
 const { connectDatabase } = require("../src/server")
 
+dotenv.config({
+  path: path.resolve(__dirname, "../../.env")
+})
+process.env.ENV = "test"
+
 chai.use(chaiHttp)
 
 global.chai = chai

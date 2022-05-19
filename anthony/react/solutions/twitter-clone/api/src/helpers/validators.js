@@ -12,7 +12,12 @@ const signupValidator = [
   check("password").custom((password, { req }) => password === req.body.confirmPassword)
 ]
 
+const squawkValidator = [
+  check("body").exists().isLength({ min: 1, max: 241 })
+]
+
 module.exports = {
   loginValidator,
-  signupValidator
+  signupValidator,
+  squawkValidator
 }

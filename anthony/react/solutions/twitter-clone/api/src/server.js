@@ -7,6 +7,7 @@ const path = require("path")
 
 // import routes
 const authRoutes = require("./routes/auth.routes")
+const squawkRoutes = require("./routes/squawk.routes")
 
 // Initialize dotenv
 const envPath = path.resolve(__dirname, "../../.env")
@@ -25,6 +26,7 @@ app.use(express.json())
 
 // Routes
 app.use("/auth", authRoutes)
+app.use("/squawk", squawkRoutes)
 
 // Connect to Database
 const connectDatabase = async (dbName = process.env.DB_NAME) => {
