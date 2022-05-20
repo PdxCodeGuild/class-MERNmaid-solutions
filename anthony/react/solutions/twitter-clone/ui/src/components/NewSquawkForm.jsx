@@ -5,15 +5,9 @@ const NewSquawkForm = () => {
 
   const [body, setBody] = useState("")
   const [token, setToken] = useGlobal("token")
-  const submitButton = useRef("")
 
   const handleChange = (e) => {
     setBody(e.target.value)
-    if (body.length < 1 || body.length > 4) {
-      submitButton.current.disabled = true
-      return
-    };
-    submitButton.current.disabled = false
   }
 
   const handleSubmit = async (e) => {
@@ -24,15 +18,15 @@ const NewSquawkForm = () => {
         "Authorization": `Bearer ${token}`
       }
     })
-
-    console.log(data.body)
+    setBody("")
+    console.log(data)
   }
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <input type="text" name="body" placeholder="Squawk" onChange={handleChange} value={body} />
-        <button disabled ref={submitButton}>Squawk</button>
+        <button disabled={!body || body.length > 241}>Squawk</button>
       </form>
     </>
   )
