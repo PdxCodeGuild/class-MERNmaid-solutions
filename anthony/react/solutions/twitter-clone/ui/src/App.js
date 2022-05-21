@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Signup from "./pages/Signup";
 import Login from "./pages/Login"
 import Home from "./pages/Home"
+import Navbar from "./components/Navbar";
 
 function App() {
 
@@ -11,7 +12,9 @@ function App() {
     if (state) return JSON.parse(state)
 
     return {
-      token: null
+      token: null,
+      recentSquawk: false,
+      user: null
     }
   }
 
@@ -23,6 +26,7 @@ function App() {
 
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

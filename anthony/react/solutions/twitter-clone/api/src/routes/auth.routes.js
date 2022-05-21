@@ -27,7 +27,7 @@ router.post("/login", [...loginValidator, handleValidationErrors], async (req, r
   }
   const token = jwt.sign(user.sanitize(), process.env.SECRET_KEY)
 
-  res.send({ token })
+  res.send({ token, user: user.sanitize() })
 })
 
 module.exports = router

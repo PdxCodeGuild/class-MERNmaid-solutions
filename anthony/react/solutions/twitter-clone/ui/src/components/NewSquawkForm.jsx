@@ -5,6 +5,7 @@ const NewSquawkForm = () => {
 
   const [body, setBody] = useState("")
   const [token, setToken] = useGlobal("token")
+  const [recentSquawk, setRecentSquawk] = useGlobal("recentSquawk")
 
   const handleChange = (e) => {
     setBody(e.target.value)
@@ -19,7 +20,7 @@ const NewSquawkForm = () => {
       }
     })
     setBody("")
-    console.log(data)
+    setRecentSquawk(true)
   }
 
   return (

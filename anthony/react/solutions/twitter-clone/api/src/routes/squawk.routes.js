@@ -14,4 +14,28 @@ router.post("/", [...squawkValidator, handleValidationErrors, jwtMiddleware], as
   res.status(201).send(squawk)
 })
 
+// Retrieve
+
+// Delete
+router.delete("/:_id", [jwtMiddleware], async (req, res) => {
+  const squawk = await Squawk.findById(req.params._id)
+  console.log("SQUAWK:", squawk.user)
+  console.log("USER:", req.user._id)
+
+  if (squawk.user.toString() !== req.user._id.toString()) return res.status(403).send({ errors: ["Invalid Operation"] })
+
+  squawk.deleted = true
+  await squawk.save()
+  res.send(squawk)
+})
+
+// List
+router.get("/", async (req, res) => {
+  const squawks = await Squawk.find({ deleted: { $eq: false } },
+    { user: true, createdAt: true, body: true },
+    { limit: 10, sort: "-createdAt" }).populate({ path: "user" })
+
+  res.send(squawks)
+})
+
 module.exports = router
