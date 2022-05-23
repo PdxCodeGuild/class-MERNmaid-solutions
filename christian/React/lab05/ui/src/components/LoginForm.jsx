@@ -6,7 +6,8 @@ import axios from "axios"
 
 const LoginForm = () => {
 
-    const {token, setToken} = useGlobal("token")
+    const [token, setToken] = useGlobal("token")
+    const [user, setUser] = useGlobal("user")
     const [error, setError] = useState("")
     const [loggedIn, setLoggedIn] = useState(false)
     const [ formState, setFormState ] = useState({
@@ -25,10 +26,14 @@ const LoginForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
+            
             const {data} = await axios.post("http://localhost:1337/auth/login", formState)
+            setUser(data.user)
             setToken(data.token)
             setLoggedIn(true)
+            console.log("logged in")
         } catch (err) {
+            
             setError("Invalid Login")
         }
 

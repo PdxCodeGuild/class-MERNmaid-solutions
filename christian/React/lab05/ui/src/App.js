@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import Signup from "./pages/Signup";
 import Login from "./pages/Login"
 import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
 
 import './App.css';
 
@@ -15,6 +16,12 @@ function App() {
   const rehydrateState = () => {
     const state = localStorage.getItem("globalState")
     if (state) return JSON.parse(state)
+    return {
+      token: null,
+      recentSquawk: false,
+      user: null
+
+    }
   }
 
   setGlobal({
@@ -28,6 +35,7 @@ function App() {
 
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

@@ -23,6 +23,22 @@ form {
 form > input {
   height: 2.5rem;
   font-size: 2.5rem;
+  
 }
 
+nav {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+nav > a{
+  text-decoration: none;
+  color: black
+}
+
+nav div > a {
+  padding: 0.75rem;
+  font-size: 2rem
+}
 

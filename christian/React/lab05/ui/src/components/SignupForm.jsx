@@ -5,6 +5,7 @@ import axios from "axios"
 const SignupForm = () => {
 
     const [token, setToken] = useGlobal("token")
+    const [user, setUser] = useGlobal("user")
     const [error, setError] = useState("")
     const [signedUp, setSignedUp] = useState(false)
     const [ formState, setFormState ] = useState({
@@ -30,6 +31,7 @@ const handleSubmit = async (e) => {
             username: formState.username,
             password: formState.password
         })
+        setUser(data.user)
         setToken(data.token)
         setSignedUp(true)
 
