@@ -1,0 +1,87 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: 'Libre Franklin', sans-serif;
+  font-weight: 100;
+}
+
+.light {
+  background-color: white;
+  color: #1b1b1b;
+}
+
+.dark {
+  background-color: #1b1b1b;
+  color: rgb(244, 250, 255);
+}
+
+#header {
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: currentBackgroundColor;
+}
+
+#selfPhoto {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-image: url("../public/portfolioPhoto.png");
+  background-size: cover;
+  background-position: top;
+}
+
+#name {
+  text-align: center;
+}
+
+#nav {
+  width: 15rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#footer {
+  width: 100%;
+  height: 5vh;
+  text-align: center;
+  background-color: currentBackgroundColor;
+}
+
+.pages {
+  width: 100%;
+  height: 75vh;
+  padding: 3vh 3vw;
+  overflow: hidden;
+}
+
+.outerTab {
+  padding: 0.5rem;
+  max-height: 65vh;
+  overflow: hidden;
+}
+
+.innerTab {
+  padding: 1rem;
+  max-height: 50vh;
+  overflow: scroll;
+}
+
+.helloTab {
+  overflow: scroll;
+  padding: 0.5rem;
+  max-height: 65vh;
+}
+
+h4 {
+  font-family: 'Libre Franklin', sans-serif;
+  padding: 0.5rem;
+}
+
+p {
+  font-family: 'Libre Baskerville', serif;
+}

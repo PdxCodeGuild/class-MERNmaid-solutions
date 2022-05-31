@@ -58,6 +58,7 @@ router.delete('/delete/:id', jwtMiddleware, async (req, res) => {
 //List board
 router.get("/list", async (req, res) => {
     const boards = await Board.find().populate("posts");
+    console.log(boards, "BOARD!!")
     res.send(boards);
 });
 

@@ -36,6 +36,14 @@ describe("/board/create boardRoute.js", () => {
         chai.expect(response.body._id).to.exist;
         
     });
+    //list board test
+    it("Should allow boards to be listed", async () => {
+        const response = await chai.request(app)
+        .get('/board/list')
+       
+        chai.expect(response.status).to.eq(200)
+        chai.expect(response.body).to.exist;
+    })
    //delete board test
     it("Should allow only verified users to delete their board", async () => {
         const token = await getToken()
@@ -46,12 +54,4 @@ describe("/board/create boardRoute.js", () => {
         chai.expect(response.status).to.eq(200);
         chai.expect(response.body._id).to.exist;
     });
-    //list board test
-    it("Should allow posts to be listed", async () => {
-        const response = await chai.request(app)
-        .get(`/board/list/${this.boardId}`)
-
-        chai.expect(response.status).to.eq(200)
-        chai.expect(response.body._id).to.exist;
-    })
 });

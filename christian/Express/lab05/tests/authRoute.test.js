@@ -65,8 +65,9 @@ describe("/user/profile userRoute.js", () => {
       .request(app)
       .get("/user/profile")
       .set("Authorization", `Bearer ${this.token}`);
+     
       chai.expect(response.status).to.eq(200);
-      chai.expect(response.body.username).to.exist;
+      chai.expect(response.body.user.username).to.exist;
       
     });
 });

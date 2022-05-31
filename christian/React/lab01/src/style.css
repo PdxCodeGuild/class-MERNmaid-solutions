@@ -1,7 +1,35 @@
-.todo {
-    display: flex
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* #root{
+    display: flex;
+    justify-content: center;
+    background-color: blue;
+    
+} */
+
+/* 
+.list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: blue;
+    
+
+    
 }
+ 
+.items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
 
 .complete {
-    text-decoration: line-through;
-}
+    text-decoration:solid;
+} */
+

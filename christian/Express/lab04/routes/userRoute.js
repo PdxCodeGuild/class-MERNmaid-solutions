@@ -79,7 +79,7 @@ authRouter.post("/login", [...loginValidator], async (req, res) => { //... sprea
 });
 
 
-authrouter.get('/profile', jwtMiddleware, async (req, res) => {
+authRouter.get('/profile', jwtMiddleware, async (req, res) => {
     const user = await User.findById({ _id: req.params.id})
     const userPosts = await Post.find({ user: userId });
     console.log(userPosts);
