@@ -1,6 +1,3 @@
-import { useState } from "react";
-
-// Add Item without backend functionality
 const AddItem = ({
 	value,
 	handleChange,

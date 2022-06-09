@@ -8,7 +8,7 @@
 	},
 	"devDependencies": {
 		"parcel": "^2.5.0",
-		"postcss": "^8.4.12",
+		"postcss": "^8.4.14",
 		"tailwindcss": "^3.0.24"
 	},
 	"dependencies": {
@@ -16,6 +16,7 @@
 		"@heroicons/react": "^1.0.6",
 		"react": "^18.1.0",
 		"react-dom": "^18.1.0",
-		"react-router-dom": "^6.3.0"
+		"react-router-dom": "^6.3.0",
+		"reactn": "^2.2.7"
 	}
 }
