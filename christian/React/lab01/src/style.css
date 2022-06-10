@@ -1,9 +1,16 @@
-#root{
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* #root{
     display: flex;
     justify-content: center;
+    background-color: blue;
     
-    
-}
+} */
 
 /* 
 .list{
@@ -22,6 +29,3 @@
     justify-content: center;
 } 
 
-.complete {
-    text-decoration:solid;
-} */
