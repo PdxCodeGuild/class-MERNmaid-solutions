@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
 
+
   "scripts": {
     "start": "parcel src/index.html"
   },
@@ -12,6 +13,7 @@
     "parcel": "^2.5.0",
     "postcss": "^8.4.13",
     "tailwindcss": "^3.0.24"
+
 
   },
   "dependencies": {

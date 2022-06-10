@@ -1,7 +1,6 @@
 import { createRoot } from "react-dom/client"
 import List from "./components/List"
 
-
 import { useState } from "react"
 
 
@@ -24,8 +23,10 @@ const App = () => {
     //toggle completed
     const toggleCompleted = (e, index) => {
         const checkBox = [...items] //get todo array make new array
+
         checkBox[index].completed = !checkBox[index].completed //target completed value in the array. Flip with "!" and use new array
         console.log(checkBox[index].completed)
+
         setItem(checkBox)
     }
     //target change of value
@@ -37,10 +38,12 @@ const App = () => {
     const addTodoClick = () => {
         setItem([
             ...items,
+
             { "name": newItem,
               "completed": false}
         ])
        
+
     };
     // remove item
     const removeClick = (index) => {
@@ -49,11 +52,12 @@ const App = () => {
         setItem(removeItemList)
     }
     return (
+
         <div className="list py-20">
             <div className="title flex justify-center py-8 text-2xl bg-zinc-700 border-solid mb-8 rounded-md">Heres the Todo List</div>
             <input placeholder="add todo here" type="text" value={newItem} onChange={(e) => handleChange(e)} />
             <button className="ml-5 bg-zinc-700 rounded-full px-8" onClick={addTodoClick}>Add todo</button>
-            <List items={items} toggleCompleted={toggleCompleted} removeClick={removeClick} />
+          <List items={items} toggleCompleted={toggleCompleted} removeClick={removeClick} />
         </div>
     )
 }
