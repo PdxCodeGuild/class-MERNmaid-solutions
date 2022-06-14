@@ -18,10 +18,8 @@ function App() {
 
       <div>
         {posts.map((post) => (
-          <div key={post.id}>
-            <p>Title:</p>
-            <div>{post.title}</div>
-            <p>Body:</p>
+          <div class="post" key={post.id}>
+            <h3>Title: {post.title}</h3>
             <div>{post.body}</div>
           </div>
         ))}
