@@ -14,15 +14,19 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+app.get("/api", (req, res) => {
+  res.json({ message: "Hello from server!" });
+});
+
 //create person
-app.post("/people", async (req, res) => {
+app.post("/create", async (req, res) => {
   const person = new Person(req.body); //use body parser and pull Person model
   await person.save(); // .save to database
   res.send(person); //.send back
 });
 
 //retrieve person
-app.get("/people/:id", async (req, res) => {
+app.get("/retrieve/:id", async (req, res) => {
   // use ':id to target specific people
   const person = await Person.findOne({ _id: req.params.id });
   if (!person) {
@@ -32,7 +36,7 @@ app.get("/people/:id", async (req, res) => {
   }
 });
 //update person
-app.patch("/people/:id", async (req, res) => {
+app.patch("/update/:id", async (req, res) => {
   //same as delete except use .patch
   const person = await Person.findOne({ _id: req.params.id });
   if (!person) {
@@ -45,7 +49,7 @@ app.patch("/people/:id", async (req, res) => {
   res.send(person);
 });
 //delete person
-app.delete("/people/:id", async (req, res) => {
+app.delete("/delete/:id", async (req, res) => {
   const person = await Person.findOne({ _id: req.params.id });
   if (!person) {
     res.send(404);
@@ -64,7 +68,7 @@ const runServer = async () => {
   await mongoose.connect("mongodb://localhost:27017/models"); //connect to mongoose
   console.log("success");
 
-  app.listen(3000, () => {
+  app.listen(3001, () => {
     //app.listen to connect server and app
     console.log("server is listening to port 3000");
   });
