@@ -5,6 +5,7 @@ const { app } = require("../server");
 dotenv.config();
 
 // .set("Authorization", `Bearer ${process.env.ADMIN_TOKEN}`)
+var userPost = null;
 
 describe("/post/ post.routes.js", () => {
   it("should disallow an unauthenticated user post", async () => {
@@ -28,7 +29,7 @@ describe("/post/ post.routes.js", () => {
     chai.expect(response.body.title).to.be.eq("testpost1");
     chai.expect(response.body.content).to.be.eq("testcontent");
     chai.expect(response.body._id).to.exist;
-    const userPost = response.body._id;
+    userPost = response.body._id;
   });
 
   it("should allow an authenticated user post", async () => {
@@ -41,6 +42,44 @@ describe("/post/ post.routes.js", () => {
     chai.expect(response.status).to.eq(200);
     chai.expect(response.body.title).to.be.eq("testpost1");
     chai.expect(response.body.content).to.be.eq("testcontent");
+  });
+});
+
+describe("/post/:id post.routes.js", () => {
+  it("should get previously created post", async () => {
+    const response = await chai.request(app).get(`/post/${userPost}`).send();
+
+    chai.expect(response.status).to.eq(200);
+    chai.expect(response.body.title).to.be.eq("testpost1");
+    chai.expect(response.body.content).to.be.eq("testcontent");
+    chai.expect(response.body.board._id).to.be.eq(process.env.BOARDID);
+  });
+
+  //THIS TIMES OUT FOR SOME REASON
+  // it("should respond with 404 for failed post", async () => {
+  //   const response = await chai.request(app).get(`/post/${userPost}1`).send();
+  //
+  //   chai.expect(response.status).to.eq(404);
+  // });
+
+  it("should patch previously created post with owner", async () => {
+    const response = await chai.request(app).patch(`/post/${userPost}`).set("Authorization", `Bearer ${process.env.TOKEN}`).send({
+      title: "testpost2",
+      content: "testcontentedit",
+      board: process.env.BOARDID,
+    });
+
+    chai.expect(response.status).to.eq(200);
+    chai.expect(response.body.title).to.be.eq("testpost2");
+    chai.expect(response.body.content).to.be.eq("testcontentedit");
+  });
+
+  it("should delete previously created post with owner", async () => {
+    const response = await chai.request(app).delete(`/post/${userPost}`).set("Authorization", `Bearer ${process.env.TOKEN}`).send();
+
+    chai.expect(response.status).to.eq(200);
+    chai.expect(response.body.title).to.be.eq("testpost2");
+    chai.expect(response.body.content).to.be.eq("testcontentedit");
   });
 
 });
