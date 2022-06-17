@@ -20,7 +20,6 @@ router.post("/", jwtMiddleware, async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   const post = await Post.findOne({ _id: req.params.id }).populate("user").populate("board");
-  console.log("hi");
 
   if (!post) {
     return res.status(404).send("post not found");
