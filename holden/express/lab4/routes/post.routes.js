@@ -22,7 +22,7 @@ router.get("/:id", async (req, res) => {
   const post = await Post.findOne({ _id: req.params.id }).populate("user").populate("board");
 
   if (!post) {
-    return res.sendStatus(404);
+    return res.status(404).send("post not found");
   } else {
     post.user = sanitizeUser(post.user);
     res.send(post);
@@ -57,7 +57,7 @@ router.delete("/:id", jwtMiddleware, async (req, res) => {
   if (!post) {
     return res.sendStatus(404);
   };
-  if (post.user != req.user && !req.user.isAdmin) {
+  if (post.user.toString() != req.user._id.toString() && !req.user.isAdmin) {
     return res.status(403).send("unauthorized");
   };
 

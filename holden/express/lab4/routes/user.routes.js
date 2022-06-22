@@ -9,13 +9,13 @@ const User = require("../models/User.model");
 const userRouter = Router();
 
 const signupValidator = [
-  check("username").exists().isLength({ min: 4, max: 12 }),
+  check("username").exists().isLength({ min: 4, max: 32 }),
   check("password").exists().isLength({ min: 6, max: 32 }),
   check("passwordCheck").exists().isLength({ min: 6, max: 32 }),
 ];
 
 const loginValidator = [
-  check("username").exists().isLength({ min: 4, max: 12 }),
+  check("username").exists().isLength({ min: 4, max: 32 }),
   check("password").exists().isLength({ min: 6, max: 32 }),
 ];
 
@@ -28,6 +28,7 @@ const sanitizeUser = (user) => ({
 userRouter.post("/signup", [...signupValidator], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
+    console.log(errors);
     return res.status(400).send({ errors: errors.array() });
   }
 
@@ -36,17 +37,25 @@ userRouter.post("/signup", [...signupValidator], async (req, res) => {
   // Make sure username is not taken
   const userFound = await User.findOne({ username });
   if (userFound) {
-    return res.status(400).send({ errors: "username taken" });
+    return res.status(409).send({ errors: "username taken" });
   }
   // Check to see if passwords do not match
   if (password !== passwordCheck) {
-    return res.status(400).send({ errors: "passwords do not match" });
+    return res.status(401).send({ errors: "passwords do not match" });
   }
+
+  if (process.env.TESTING && req.body.isAdmin) {
+    adminTest = true;
+  } else {
+    adminTest = false;
+  };
 
   const user = await User.create({
     username,
     password: bcrypt.hashSync(password, 10),
+    isAdmin: adminTest,
   });
+
 
   res.send(sanitizeUser(user));
 });
@@ -62,7 +71,7 @@ userRouter.post("/login", [...loginValidator], async (req, res) => {
 
   const user = await User.findOne({ username });
   if (!user) {
-    return res.sendStatus(418); // 401
+    return res.sendStatus(418);
   }
 
   const correctPassword = bcrypt.compareSync(password, user.password);
@@ -71,7 +80,7 @@ userRouter.post("/login", [...loginValidator], async (req, res) => {
   }
 
   const token = jwt.sign(sanitizeUser(user), process.env.SECRET_KEY, {
-    expiresIn: "1 months",
+    expiresIn: "30 days",
   });
 
   res.send({ token });
@@ -79,7 +88,6 @@ userRouter.post("/login", [...loginValidator], async (req, res) => {
 
 userRouter.get("/profile", jwtMiddleware, async (req, res) => {
   const reqUser = req.user._id
-  console.log(reqUser);
   const userdata = await User.findOne({ _id: reqUser }).populate("posts");
   const sanUser = sanitizeUser(userdata);
   res.send(sanUser);

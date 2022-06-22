@@ -1,0 +1,32 @@
+const mongoose = require("mongoose");
+
+const { Schema } = mongoose;
+const { ObjectId } = Schema.Types;
+
+const postSchema = Schema(
+  {
+    user: {
+      type: ObjectId,
+      ref: "User",
+    },
+    board: {
+      type: ObjectId,
+      ref: "Board"
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    body: {
+      type: String,
+      required: true
+    }
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const Post = mongoose.model("Post", postSchema);
+
+module.exports = Post;

@@ -13,7 +13,8 @@ router.post("/", jwtMiddleware, async (req, res) => {
   }
   const { boardName } = req.body
   const boardFound = await Board.findOne({ boardName });
-  if (boardFound || boardName.toLowerCase() == "boardlist") {
+
+  if (boardFound) {
     return res.status(409).send({ errors: "boardName exists" });
   }
   const board = new Board(req.body);

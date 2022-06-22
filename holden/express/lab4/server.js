@@ -15,7 +15,7 @@ const app = express();
 
 // middleware
 app.use(cors());
-app.use(morgan("dev"));
+//app.use(morgan("dev"));
 app.use(express.json());
 
 // routes
@@ -23,13 +23,16 @@ app.use("/post", postRoutes);
 app.use("/user", userRoutes);
 app.use("/", boardRoutes);
 
-
-const startServer = async (port = 3000, hostname = "localhost") => {
-  await connectDatabase("lab4"); // Change database name
+const startServer = async (port = 3000, hostname = "localhost", database = "lab4") => {
+  await connectDatabase(database); // Change database name
 
   app.listen(port, hostname, () => {
     console.log(`🚀 Listening at ${hostname}:${port}...`);
   });
 };
 
-startServer();
+module.exports = {
+  app,
+  connectDatabase,
+  startServer,
+};
