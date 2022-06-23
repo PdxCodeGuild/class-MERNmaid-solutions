@@ -1,42 +1,54 @@
-const express = require("express");
-const morgan = require("morgan");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const path = require("path");
+const express = require("express")
+const mongoose = require("mongoose")
+const morgan = require("morgan")
+const cors = require("cors")
+const dotenv = require("dotenv")
+const path = require("path")
 
+// import routes
+const authRoutes = require("./routes/auth.routes")
+const squawkRoutes = require("./routes/squawk.routes")
+
+// Initialize dotenv
 const envPath = path.resolve(__dirname, "../../.env")
-dotenv.config({path: envPath});
+dotenv.config({
+  path: envPath
+});
 
-const app = express();
 
-app.use(cors());
-app.use(morgan("tiny"));
-app.use(express.json());
+// Initialize express app
+const app = express()
 
-const connectDB = async (dbName = process.env.DB_NAME) => {
-  try {
-    await mongoose.connect("mongodb://localhost:27017/" + dbName);
-    if (process.env.TEST) {
-      console.log("🚀 DB Connected...");
-    }
-  } catch (err) {
-    console.error(err);
-    process.exit(-1);
+// Middleware
+app.use(morgan("tiny"))
+app.use(cors())
+app.use(express.json())
+
+// Routes
+app.use("/auth", authRoutes)
+app.use("/squawk", squawkRoutes)
+
+// Connect to Database
+const connectDatabase = async (dbName = process.env.DB_NAME) => {
+  const connection = await mongoose.connect(`mongodb://localhost/${dbName}`)
+  if (process.env.ENV !== "test") {
+    console.log(`🧜‍ Connected to mongodb://localhost/${dbName}`)
   }
-};
+  return connection
+}
 
-const startServer = async () => {
-  await connectDB();
-  app.listen(process.env.API_PORT, () => {
-    if (process.env.TEST) {
-      console.log(`🧜‍♀️ listening on port ${process.env.API_PORT}`);
-    };
-  });
-};
+// Start server
+const startServer = () => {
+  app.listen(process.env.API_PORT, async () => {
+    await connectDatabase()
+    if (process.env.ENV !== "test") {
+      console.log(`🚀 Server listening on http://localhost:${process.env.API_PORT}`)
+    }
+  })
+}
 
 module.exports = {
-  connectDB,
-  startServer,
   app,
-};
+  connectDatabase,
+  startServer
+}
