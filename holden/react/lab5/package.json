@@ -5,8 +5,7 @@
   "license": "MIT",
   "scripts": {
     "conc": "concurrently -p [{name}] -c bgBlue.bold,bgGreen.bold -n API,UI",
-    "start": "yarn conc \"cd api && yarn start\"",
-    "comment": "\"cd ui && yarn start\""
+    "start": "yarn conc \"cd api && yarn start\" \"cd ui && yarn start\""
   },
   "dependencies": {
     "concurrently": "^7.2.0"
