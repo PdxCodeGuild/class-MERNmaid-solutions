@@ -1,0 +1,17 @@
+h1{
+  text-align: center;
+}
+h3{
+  border-bottom: 1px black;
+  margin: 0px;
+}
+.post{
+  border-radius: 3px;
+  border: 1px;
+  background-color: #e0e0e0;
+  padding: 3px;
+  margin: 1px;
+}
+.post > *{
+  margin: 2px;
+}

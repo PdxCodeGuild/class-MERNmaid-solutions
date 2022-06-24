@@ -1,0 +1,23 @@
+body{
+  width: 100%;
+}
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid gray;
+  border-radius: 3px;
+  max-width: 200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.checked {
+  text-decoration: line-through;
+}
