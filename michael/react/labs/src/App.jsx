@@ -31,6 +31,15 @@ const App = () => {
 					}
 				/>
 				<Route
+					path="Contact"
+					element={
+						<div className="bg-teal-100">
+							<Navbar404 />
+							<h1>Contact</h1>
+						</div>
+					}
+				/>
+				<Route
 					path="*"
 					element={
 						<div>
