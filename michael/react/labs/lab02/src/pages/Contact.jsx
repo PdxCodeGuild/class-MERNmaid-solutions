@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "reactn";
 
 const Contact = () => {
 	const [name, setName] = useState("");
