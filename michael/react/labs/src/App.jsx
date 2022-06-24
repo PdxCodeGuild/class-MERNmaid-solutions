@@ -24,8 +24,8 @@ const App = () => {
 				<Route
 					path="Lab01"
 					element={
-						<div>
-							<HeroSection />
+						<div className="bg-teal-100">
+							<Navbar404 />
 							<TodoList />
 						</div>
 					}

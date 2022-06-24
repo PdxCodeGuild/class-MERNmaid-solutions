@@ -1,92 +1,56 @@
-import AddItem from "../components/AddItem";
-import RemoveItem from "../components/RemoveItem";
-import ToggleComplete from "../components/ToggleComplete";
+import Item from "../components/Item";
 import { useState } from "reactn";
 
-// Todo List without backend functionality
 const TodoList = () => {
-	const [items, setItems] = useState([]);
-	const [value, setValue] = useState("");
-	const [isError, setIsError] = useState(false);
-	const [error, setError] = useState("");
-	const [isSuccess, setIsSuccess] = useState(false);
-	const [success, setSuccess] = useState("");
-	const [isCompleted, setIsCompleted] = useState(false);
+	const [newTodo, setNewTodo] = useState("");
+	const [todos, setTodos] = useState([]);
 
 	const handleChange = (e) => {
-		setValue(e.target.value);
+		setNewTodo(e.target.value);
 	};
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		if (value === "") {
-			setIsError(true);
-			setError("Please enter a value");
-		} else if (items.includes(value)) {
-			setIsError(true);
-			setError("Item already exists");
-		} else if (value.trim().length === 0) {
-			setIsError(true);
-			setError("Please enter a value");
-			setValue("");
-		} else {
-			setIsError(false);
-			setError("");
-			setIsSuccess(true);
-			setSuccess("");
-			setItems([...items, value]);
-			setValue("");
+	const addTodo = () => {
+		if (todos.includes(newTodo)) {
+			return;
+		}
+		setTodos([...todos, newTodo]);
+		setNewTodo("");
+	};
+
+	const removeTodo = (todo) => {
+		setTodos(todos.filter((t) => t !== todo));
+	};
+
+	const toggleComplete = (todo) => {
+		if (todo.isComplete) {
+			setTodos(
+				todos.map((t) => (t === todo ? { ...t, isComplete: false } : t))
+			);
 		}
 	};
-
-	// Toggle item green when completed, red when not completed
-	const handleToggleComplete = (e) => {
-		setIsCompleted(!isCompleted);
-	};
-
-	// Remove item from list
-	const handleRemoveItem = (e) => {
-		e.preventDefault();
-		setIsSuccess(false);
-		setSuccess("");
-		setItems(items.filter((item) => item !== e.target[0].className));
-	};
-
 	return (
-		<div className="todo-list">
-			<h1>Todo List</h1>
-			<AddItem
-				value={value}
-				handleChange={handleChange}
-				handleSubmit={handleSubmit}
-				isError={isError}
-				error={error}
-				isSuccess={isSuccess}
-				success={success}
+		<div className="p-4 border-black border-2">
+			<input
+				className="border-2"
+				type="text"
+				value={newTodo}
+				onChange={handleChange}
 			/>
-			<ul>
-				{items.map((item, index) => (
-					<li key={index}>
-						<div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
-							<ToggleComplete
-								value={item}
-								handleToggleComplete={handleToggleComplete}
-								isCompleted={isCompleted}
-							/>
-							<RemoveItem
-								value={item}
-								handleRemoveItem={handleRemoveItem}
-								isError={isError}
-								error={error}
-								isSuccess={isSuccess}
-								success={success}
-							/>
-							{isCompleted && <span className="bg-green-600">{item}</span>}
-							{!isCompleted && <span className="bg-yellow-200">{item}</span>}
-						</div>
-					</li>
-				))}
-			</ul>
+			<button className="border-2 border-black" onClick={addTodo}>
+				Add
+			</button>
+			<div className="flex">
+				<ul className="border-1">
+					{todos.map((todo) => (
+						<Item
+							key={todo}
+							text={todo}
+							removeTodo={removeTodo}
+							toggleComplete={toggleComplete}
+						/>
+					))}
+				</ul>
+			</div>
 		</div>
 	);
 };
