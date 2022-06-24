@@ -29,7 +29,7 @@ const TodoList = () => {
 		}
 	};
 	return (
-		<div className="p-4 border-black border-2">
+		<div className="p-4 h-screen bg-teal-100">
 			<input
 				className="border-2"
 				type="text"
