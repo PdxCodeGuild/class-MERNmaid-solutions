@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Link } from "./components/link";
 
-import Home from "./pages/home";
+import Home from "./pages/Home";
 import TodoList from "../lab01/src/pages/TodoList";
 import Navbar404 from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
-import NotFound from "./pages/notfound";
+import NotFound from "./pages/Notfound";
+import Contact from "../lab02/src/pages/Contact";
 import "./index.css";
 
 const App = () => {
@@ -31,11 +32,11 @@ const App = () => {
 					}
 				/>
 				<Route
-					path="Contact"
+					path="Lab02"
 					element={
 						<div className="bg-teal-100">
 							<Navbar404 />
-							<h1>Contact</h1>
+							<Contact />
 						</div>
 					}
 				/>

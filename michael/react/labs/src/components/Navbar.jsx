@@ -5,8 +5,9 @@ import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "../components/Link";
 
 const navigation = [
+	{ name: "Home", href: "../", current: false },
 	{ name: "Lab01", href: "../Lab01", current: false },
-	{ name: "Lab02", href: "../Lab02", current: false },
+	{ name: "Contact (L2)", href: "../Lab02", current: false },
 	{ name: "Lab03", href: "../Lab03", current: false },
 	{ name: "Lab04", href: "../Lab04", current: false },
 	{ name: "Lab05", href: "../Lab05", current: false },

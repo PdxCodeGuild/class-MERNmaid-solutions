@@ -6,7 +6,7 @@ import Link from "../components/Link";
 
 const navigation = [
 	{ name: "Lab 1", href: "Lab01" },
-	{ name: "Lab 2", href: "Lab02" },
+	{ name: "Contact (L2)", href: "Lab02" },
 	{ name: "Lab 3", href: "Lab03" },
 	{ name: "Lab 4", href: "Lab04" },
 	{ name: "Lab 5", href: "Lab05" },
