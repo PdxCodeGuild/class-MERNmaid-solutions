@@ -4,7 +4,9 @@
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
-		"dev": "parcel src/index.html"
+		"dev": "parcel src/index.html && nodemon ../../express/lab02/app.js",
+		"concurrently": "concurrently -p [{name}] -c bgBlue.bold,bgGreen.bold -n API,UI",
+		"start": "yarn concurrently \"cd ../../express/lab02 && yarn start\" \"yarn dev\""
 	},
 	"devDependencies": {
 		"buffer": "^6.0.3",
@@ -17,6 +19,7 @@
 		"@headlessui/react": "^1.6.0",
 		"@heroicons/react": "^1.0.6",
 		"axios": "^0.27.2",
+		"concurrently": "^7.2.2",
 		"react": "^18.1.0",
 		"react-dom": "^18.1.0",
 		"react-router-dom": "^6.3.0",
