@@ -8,6 +8,7 @@ import HeroSection from "./components/HeroSection";
 import NotFound from "./pages/Notfound";
 import Contact from "../lab02/src/pages/Contact";
 import Fakeposts from "../lab03/src/pages/Fakeposts";
+import PeopleDB from "../lab04/src/pages/PeopleDB";
 import "./index.css";
 
 const App = () => {
@@ -42,11 +43,29 @@ const App = () => {
 					}
 				/>
 				<Route
-					path="*"
+					path="Lab03"
 					element={
 						<div>
 							<Navbar404 />
 							<Fakeposts />
+						</div>
+					}
+				/>
+				<Route
+					path="Lab04"
+					element={
+						<div>
+							<Navbar404 />
+							<PeopleDB />
+						</div>
+					}
+				/>
+				<Route
+					path="*"
+					element={
+						<div>
+							<Navbar404 />
+							<NotFound />
 						</div>
 					}
 				/>
