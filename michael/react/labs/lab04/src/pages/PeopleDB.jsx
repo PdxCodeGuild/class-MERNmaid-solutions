@@ -144,7 +144,7 @@ const PeopleDB = () => {
 					>
 						<div className="flex flex-col border border-black w-fit m-2 p-2 items-center">
 							<div className="flex flex-row">
-								<h1>User: {person.username}</h1>
+								<h1 className=" font-extrabold">User: {person.username}</h1>
 
 								{deleteId === "" && (
 									<div>
