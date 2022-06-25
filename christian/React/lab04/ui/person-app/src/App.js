@@ -50,18 +50,16 @@ const App = () => {
       console.log(error);
     }
   }
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:3001/delete/${id}`)
-      const response = await axios.delete(`http://localhost:3001/${id}`)
-      setDeleteId(response._id)
-      if (response._id === person._id)
-      setDeleteId("")
-        
-    } catch (err) {
-      console.error(err)
-    }
+  const handleDelete = async (_id) => {
+    await axios.delete(`http://localhost:3001/delete/${_id}`)
+    const newPeopleList = people.filter((person) => {
+      return person._id !== _id;
+    })
+    setPeople(newPeopleList)
   }
+    
+
+    
 
   return (
     <>
@@ -103,7 +101,7 @@ const App = () => {
           <p>{person.lastName}</p>
           <p>{person.userName}</p>
           <p>{person.age}</p>
-         <button onClick={handleDelete}>Delete</button>
+          <button onClick={() => handleDelete(person._id)}>Delete</button>
           
       </article>
         )}
