@@ -4,11 +4,12 @@ import { useState } from "react";
 
 const App = () => {
   const [error, setError] = useState("");
+  const [deleteId, setDeleteId] = useState("")
   const [people, setPeople] = useState([]);
   const [person, setPerson] = useState({
     firstName: "",
     lastName: "",
-    username: "",
+    userName: "",
     age: "",
   });
 
@@ -40,14 +41,27 @@ const App = () => {
       const response = await axios.post("http://localhost:3001/create", {
         firstName: person.firstName,
         lastName: person.lastName,
-        userName: person.username,
+        userName: person.userName,
+        age: person.age,
       });
       console.log(response);
     } catch (error) {
       setError("error");
       console.log(error);
     }
-  };
+  }
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3001/delete/${id}`)
+      const response = await axios.delete(`http://localhost:3001/${id}`)
+      setDeleteId(response._id)
+      if (response._id === person._id)
+      setDeleteId("")
+        
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   return (
     <>
@@ -69,10 +83,10 @@ const App = () => {
         />
         <input
           type="text"
-          name="username"
+          name="userName"
           placeholder="username"
           onChange={handleChange}
-          value={person.username}
+          value={person.userName}
         />
         <input
           type="text"
@@ -84,11 +98,19 @@ const App = () => {
         <button>Create Person</button>
       </form>
       {people.map(person => 
-        <ul key={person._id}>
-          <li>{person.firstName}</li>
-        </ul>
-      )}
-    </>
-  );
-};
-export default App;
+      <article key={person._id}>
+          <p>{person.firstName}</p>
+          <p>{person.lastName}</p>
+          <p>{person.userName}</p>
+          <p>{person.age}</p>
+         <button onClick={handleDelete}>Delete</button>
+          
+      </article>
+        )}
+      </>
+    );
+  };
+  export default App;
+        
+        
+
