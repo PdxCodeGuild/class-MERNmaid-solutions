@@ -7,6 +7,7 @@ import Navbar404 from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import NotFound from "./pages/Notfound";
 import Contact from "../lab02/src/pages/Contact";
+import Fakeposts from "../lab03/src/pages/Fakeposts";
 import "./index.css";
 
 const App = () => {
@@ -45,7 +46,7 @@ const App = () => {
 					element={
 						<div>
 							<Navbar404 />
-							<NotFound />
+							<Fakeposts />
 						</div>
 					}
 				/>
