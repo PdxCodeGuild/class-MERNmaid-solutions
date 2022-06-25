@@ -20,9 +20,13 @@ app.get("/api", (req, res) => {
 
 //create person
 app.post("/create", async (req, res) => {
-  const person = new Person(req.body); //use body parser and pull Person model
-  await person.save(); // .save to database
-  res.send(person); //.send back
+  try {
+    const person = new Person(req.body); //use body parser and pull Person model
+    await person.save(); // .save to database
+    res.send(person); //.send back
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 //retrieve person
@@ -70,7 +74,7 @@ const runServer = async () => {
 
   app.listen(3001, () => {
     //app.listen to connect server and app
-    console.log("server is listening to port 3000");
+    console.log("server is listening to port 3001");
   });
 };
 
