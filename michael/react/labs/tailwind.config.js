@@ -2,6 +2,7 @@ module.exports = {
 	content: [
 		"./src/**/*.{html,js,ts,jsx,tsx}",
 		"./lab01/src/**/*.{html,js,ts,jsx,tsx}",
+		"./lab02/src/**/*.{html,js,ts,jsx,tsx}",
 	],
 	theme: {
 		extend: {},
