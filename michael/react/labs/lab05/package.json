@@ -9,6 +9,7 @@
 		"start-ui": "'cd ui && yarn start'"
 	},
 	"dependencies": {
-		"concurrently": "^7.2.0"
+		"concurrently": "^7.2.0",
+		"express-async-router": "^0.1.15"
 	}
 }
