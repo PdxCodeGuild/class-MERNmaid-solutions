@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import List from "./components/List";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 const App = () => {
 	<Router>
