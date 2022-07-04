@@ -1488,6 +1488,13 @@ react@^18.1.0:
   dependencies:
     loose-envify "^1.1.0"
 
+reactn@^2.2.7:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/reactn/-/reactn-2.2.7.tgz#4d9a94ab0d8a540062666408e4bf1fae6892cecc"
+  integrity sha512-cqnt23kWN/ABqEZhW3OlpqI1DgTaaNDeHpSHtyd81qk0H1jd32zPTzJ69Hpzti2WakwNYveGFPIgI6i7E7nXOA==
+  dependencies:
+    use-force-update "^1.0.5"
+
 regenerator-runtime@^0.13.4, regenerator-runtime@^0.13.7:
   version "0.13.9"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz#8925742a98ffd90814988d7566ad30ca3b263b52"
@@ -1607,6 +1614,11 @@ update-browserslist-db@^1.0.4:
   dependencies:
     escalade "^3.1.1"
     picocolors "^1.0.0"
+
+use-force-update@^1.0.5:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/use-force-update/-/use-force-update-1.0.8.tgz#14483faa4571673f070080f8233057b43b266ace"
+  integrity sha512-ua22fB++yaCvnf+Unht3L/2Lq3O7QstCtyh1IV8ydkJcyT6yVwMNgkKKhOsj5HRJCJj2oQbjzd6JJVnx7S+3uA==
 
 utility-types@^3.10.0:
   version "3.10.0"

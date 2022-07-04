@@ -1,4 +1,4 @@
-import { useState, useGlobal } from "react"
+import { useState, useGlobal } from "reactn"
 
 const Home = () => {
 
