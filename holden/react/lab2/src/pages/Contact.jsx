@@ -5,9 +5,11 @@ const Contact = () => {
   const [token, setToken] = useGlobal("token")
 
   return (
+    <div>
     <h1>Contact me:</h1>
-    <textarea name="name" rows="8" cols="80"></textarea>
-    <button type="button" name="button">send</button>
+    <textarea rows="8" cols="80"></textarea>
+    <button>send</button>
+    </div>
   );
 };
 
