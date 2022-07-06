@@ -6,7 +6,7 @@ const Contact = () => {
 
   return (
     <h1>Placeholder Contact</h1>
-  )
+  );
 };
 
 export default Contact;

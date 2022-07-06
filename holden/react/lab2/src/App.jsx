@@ -5,12 +5,14 @@ import Contact from "./pages/Contact";
 
 
 const App = () => {
-	<Router>
-		<Routes>
-			<Route path="/" element={<Home />} />
-			<Route path="/contact" element={<Contact />} />
-		</Routes>
-	</Router>
+	return(
+		<Router>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/contact" element={<Contact />} />
+			</Routes>
+		</Router>
+	);
 };
 
 const root = createRoot(document.getElementById("root"));
