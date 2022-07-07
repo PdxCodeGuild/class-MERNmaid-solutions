@@ -1,0 +1,13 @@
+.main {
+  display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.horizontal {
+  display: flex;
+  justify-content: space-around;
+}
+.pic1 {
+    width: 80%;
+    align-self: center;
+}

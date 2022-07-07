@@ -1,4 +1,5 @@
-import { useState, useGlobal } from "reactn"
+import { useState, useGlobal } from "reactn";
+import Button from 'react-bootstrap/Button';
 
 const Contact = () => {
 
