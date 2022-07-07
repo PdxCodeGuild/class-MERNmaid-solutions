@@ -1,15 +1,17 @@
 import { useState, useGlobal } from "reactn";
-import Button from 'react-bootstrap/Button';
 
 const Contact = () => {
 
   const [token, setToken] = useGlobal("token")
 
   return (
-    <div>
-    <h1>Contact me:</h1>
-    <textarea rows="8" cols="80"></textarea>
-    <button>send</button>
+    <div class="main">
+      <h1><a href="/">Placeholder Name</a></h1>
+      <h2>Contact me:</h2>
+      <div>
+        <textarea rows="8" cols="80"></textarea><br/>
+        <button>send</button>
+      </div>
     </div>
   );
 };
