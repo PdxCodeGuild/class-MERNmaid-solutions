@@ -1,13 +1,46 @@
+body{
+  background-color: #3b3b3b;
+  color: white;
+}
 .main {
   display: flex;
-    flex-direction: column;
-    text-align: center;
+  flex-direction: column;
+  text-align: center;
 }
 .horizontal {
+  width: 80%;
+  align-self: center;
   display: flex;
   justify-content: space-around;
 }
 .pic1 {
-    width: 80%;
-    align-self: center;
+  background-color: #2e2e2e;
+  padding: 5px;
+  border-radius: 5px;
+  width: 80%;
+  align-self: center;
+}
+.horizontal > div{
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #2e2e2e;
+  margin: 5px;
+  width: 30%;
+}
+textarea{
+  background-color: #484848;
+  color: white;
+}
+
+a:link{
+  color: blue;
+}
+a:visited{
+  color: #c95bc9;
+}
+a:hover{
+  color: white;
+}
+a:active{
+  color: blue;
 }
