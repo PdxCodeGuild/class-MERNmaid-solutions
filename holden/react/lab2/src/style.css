@@ -13,6 +13,14 @@ body{
   display: flex;
   justify-content: space-around;
 }
+.who{
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #2e2e2e;
+  margin: 5px;
+  width: 80%;
+  align-self: center;
+}
 .pic1 {
   background-color: #2e2e2e;
   padding: 5px;
