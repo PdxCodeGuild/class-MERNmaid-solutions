@@ -1,0 +1,13 @@
+{
+  "name": "lab5",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "conc": "concurrently -p [{name}] -c bgBlue.bold,bgGreen.bold -n API,UI",
+    "start": "yarn conc \"cd api && yarn start\" \"cd ui && yarn start\""
+  },
+  "dependencies": {
+    "concurrently": "^7.2.0"
+  }
+}
