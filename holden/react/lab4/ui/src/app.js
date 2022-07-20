@@ -15,7 +15,9 @@ function App() {
       <div>
         {people.map((person) => (
           <div class="person" key={person.id}>
-            <h3>{person.username}</h3>
+            <div>username: {person.username}</div>
+            <div>name: {person.firstName} {person.lastName}</div>
+            <div>age: {person.age}</div>
           </div>
         ))}
       </div>
