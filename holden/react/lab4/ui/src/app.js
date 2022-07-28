@@ -47,7 +47,9 @@ function App() {
         ))}
       </div>
       <div className="personForm">
-        <input type="text" value={usernameame} onChange={usernameChange}>
+        <input type="text" value={username} placeholder="username" onChange={usernameChange}/><br/>
+        <input type="text" value={firstName} placeholder="first name" onChange={firstNameChange}/><input type="text" placeholder="last name" value={lastName} onChange={lastNameChange}/><br/>
+        <input type="text" value={age} placeholder="age" onChange={ageChange}/><button>add</button>
       </div>
 
     </>
