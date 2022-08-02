@@ -29,11 +29,27 @@ function App() {
     setAge(e.target.value);
   }
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const { data } = await axios.post("http://localhost:1337/squawk/", { body }, {});
-  //   setFirstName("");
-  // }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { data } = await axios.post("http://localhost:4040/people/", {
+      "firstName": firstName,
+      "lastName": lastName,
+      "username": username,
+      "age": age}).then((response) => {
+      if (response.status == 200) {
+        axios.get("http://localhost:4040/people").then((response) => {
+          setPeople(response.data);
+        });
+      }
+    });
+  }
+
+  const handleDelete = async (id) => {
+    const { data } = await axios.delete(`http://localhost:4040/people/${id}`);
+    axios.get("http://localhost:4040/people").then((response) => {
+      setPeople(response.data);
+    });
+  }
 
   return (
     <>
@@ -42,14 +58,14 @@ function App() {
           <div className="person" key={person.id}>
             <div>username: {person.username}</div>
             <div>name: {person.firstName} {person.lastName}</div>
-            <div>age: {person.age}</div>
+            <div>age: {person.age} <button onClick={() => handleDelete(person._id)}>delete</button></div>
           </div>
         ))}
       </div>
       <div className="personForm">
         <input type="text" value={username} placeholder="username" onChange={usernameChange}/><br/>
         <input type="text" value={firstName} placeholder="first name" onChange={firstNameChange}/><input type="text" placeholder="last name" value={lastName} onChange={lastNameChange}/><br/>
-        <input type="text" value={age} placeholder="age" onChange={ageChange}/><button>add</button>
+        <input type="text" value={age} placeholder="age" onChange={ageChange}/><button onClick={handleSubmit}>add</button>
       </div>
 
     </>

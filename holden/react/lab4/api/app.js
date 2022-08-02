@@ -16,6 +16,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post("/people", async (req, res) => {
+  console.log(req.body);
   const person = new Person(req.body);
   await person.save();
   res.send(person);
