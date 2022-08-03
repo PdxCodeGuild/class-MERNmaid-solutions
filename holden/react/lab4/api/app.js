@@ -36,6 +36,7 @@ app.patch("/people/:id", async (req, res) => {
 
   if (!person) res.send(404);
 
+  console.log(req.body);
   const personData = req.body;
 
   person.set(personData);

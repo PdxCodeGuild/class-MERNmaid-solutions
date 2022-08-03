@@ -6,6 +6,8 @@ function App() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
+  const [edit, setEdit] = useState(false);
+  const [editId, setEditId] = useState("");
 
   useEffect(() => {
     axios.get("http://localhost:4040/people").then((response) => {
@@ -31,7 +33,7 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data } = await axios.post("http://localhost:4040/people/", {
+    await axios.post("http://localhost:4040/people/", {
       "firstName": firstName,
       "lastName": lastName,
       "username": username,
@@ -45,27 +47,62 @@ function App() {
   }
 
   const handleDelete = async (id) => {
-    const { data } = await axios.delete(`http://localhost:4040/people/${id}`);
+    setEditId("");
+    setEdit(false);
+    await axios.delete(`http://localhost:4040/people/${id}`);
     axios.get("http://localhost:4040/people").then((response) => {
       setPeople(response.data);
     });
+  }
+
+  const startEdit = (person) => {
+    setEditId(person._id);
+    setUsername(person.username);
+    setFirstName(person.firstName);
+    setLastName(person.lastName);
+    setAge(person.age);
+    setEdit(true);
+  }
+
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    await axios.patch(`http://localhost:4040/people/${editId}`, {
+      "firstName": firstName,
+      "lastName": lastName,
+      "username": username,
+      "age": age}).then((response) => {
+      if (response.status == 200) {
+        axios.get("http://localhost:4040/people").then((response) => {
+          setPeople(response.data);
+        });
+      }
+    });
+  }
+
+  const cancelEdit = () => {
+    setEditId("");
+    setUsername("");
+    setFirstName("");
+    setLastName("");
+    setAge("");
+    setEdit(false);
   }
 
   return (
     <>
       <div className="people">
         {people.map((person) => (
-          <div className="person" key={person.id}>
+          <div className={`person ${person._id==editId? "editing" : ""}`} key={person._id}>
             <div>username: {person.username}</div>
             <div>name: {person.firstName} {person.lastName}</div>
-            <div>age: {person.age} <button onClick={() => handleDelete(person._id)}>delete</button></div>
+            <div>age: {person.age} <button onClick={() => startEdit(person)}>edit</button><button onClick={() => handleDelete(person._id)}>delete</button></div>
           </div>
         ))}
       </div>
       <div className="personForm">
         <input type="text" value={username} placeholder="username" onChange={usernameChange}/><br/>
         <input type="text" value={firstName} placeholder="first name" onChange={firstNameChange}/><input type="text" placeholder="last name" value={lastName} onChange={lastNameChange}/><br/>
-        <input type="text" value={age} placeholder="age" onChange={ageChange}/><button onClick={handleSubmit}>add</button>
+        <input type="text" value={age} placeholder="age" onChange={ageChange}/><button className={edit? "hidden" : ""} onClick={handleSubmit}>add</button><button className={edit? "" : "hidden"} onClick={handleEdit}>edit</button><button className={edit? "" : "hidden"} onClick={cancelEdit}>cancel</button>
       </div>
 
     </>

@@ -15,3 +15,11 @@ h3{
 .post > *{
   margin: 2px;
 }
+
+.hidden{
+  display: none;
+}
+
+.editing{
+  background-color: lightblue;
+}
