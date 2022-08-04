@@ -93,16 +93,28 @@ function App() {
       <div className="people">
         {people.map((person) => (
           <div className={`person ${person._id==editId? "editing" : ""}`} key={person._id}>
-            <div>username: {person.username}</div>
-            <div>name: {person.firstName} {person.lastName}</div>
-            <div>age: {person.age} <button onClick={() => startEdit(person)}>edit</button><button onClick={() => handleDelete(person._id)}>delete</button></div>
+            <div>
+              <div>username: {person.username}</div>
+              <div>name: {person.firstName} {person.lastName}</div>
+              <div>age: {person.age}</div>
+            </div>
+            <div>
+              <button onClick={() => startEdit(person)}>edit</button><br/>
+              <button onClick={() => handleDelete(person._id)}>delete</button>
+            </div>
           </div>
         ))}
       </div>
-      <div className="personForm">
+      <div className={`personForm ${edit? "editing" : ""}`}>
         <input type="text" value={username} placeholder="username" onChange={usernameChange}/><br/>
         <input type="text" value={firstName} placeholder="first name" onChange={firstNameChange}/><input type="text" placeholder="last name" value={lastName} onChange={lastNameChange}/><br/>
-        <input type="text" value={age} placeholder="age" onChange={ageChange}/><button className={edit? "hidden" : ""} onClick={handleSubmit}>add</button><button className={edit? "" : "hidden"} onClick={handleEdit}>edit</button><button className={edit? "" : "hidden"} onClick={cancelEdit}>cancel</button>
+        <div className="flexButtons">
+          <input type="text" value={age} placeholder="age" onChange={ageChange}/>
+          <span>
+            <button className={edit? "hidden" : ""} onClick={handleSubmit}>add</button>
+            <button className={edit? "" : "hidden"} onClick={handleEdit}>edit</button><button className={edit? "" : "hidden"} onClick={cancelEdit}>cancel</button>
+          </span>
+        </div>
       </div>
 
     </>
