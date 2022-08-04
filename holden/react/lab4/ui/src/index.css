@@ -1,0 +1,66 @@
+h1{
+  text-align: center;
+}
+h3{
+  border-bottom: 1px black;
+  margin: 0px;
+}
+.post{
+  border-radius: 3px;
+  border: 1px;
+  background-color: #e0e0e0;
+  padding: 3px;
+  margin: 1px;
+}
+.post > *{
+  margin: 2px;
+}
+
+.hidden{
+  display: none;
+}
+
+.people{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.person{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  border-radius: 4px;
+  background-color: #e3e3e3;
+  margin: 2px;
+  padding: 2px;
+}
+
+.personForm{
+  width: 80%;
+  border-radius: 4px;
+  margin: 2px auto 2px auto;
+  border: 1px solid;
+  border-color: lightgrey;
+  background-color: grey;
+  padding: 2px;
+}
+
+.person > div{
+  padding: 0px 20px 0px 20px
+}
+
+.editing{
+  background-color: lightblue;
+}
+
+.flexButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.flexButtons > span{
+  padding: 0px 20px 0px 20px;
+}
